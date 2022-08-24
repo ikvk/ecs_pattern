@@ -3,4 +3,183 @@
 pyecs 🚀
 ========
 
-Implementation of the ECS template for creating games.
+Implementation of the ECS template for creating games. Make a game instead of architecture for a game.
+
+`Документация на русском <https://github.com/ikvk/pyecs/blob/master/_docs/README_RUS.rst>`_.
+
+.. image:: https://img.shields.io/pypi/dm/pyecs.svg?style=social
+
+===============  =====================================
+Python version   3.5+
+License          Apache-2.0
+PyPI             https://pypi.python.org/pypi/pyecs/
+===============  =====================================
+
+Intro
+-----
+| ECS - Entity-Component-System - it is an architectural pattern created for game development.
+It is great for describing a dynamic virtual world.
+
+Basic principles of ECS:
+
+* Composition over inheritance
+* Data separated from logic (Data Oriented Design)
+
+| *Component* - Property with object data
+| *Entity* - Container for properties
+| *System* - Data processing logic
+
+Installation
+------------
+::
+
+    $ pip install pyecs
+
+Guide to pyecs
+--------------
+
+**Component**
+    | Property with object data. Contains only data, no logic.
+    | The component is used as a mixin in entities.
+    | Use the pyecs.component decorator to create components:
+    .. code-block:: python
+
+        @component
+        class ComPosition:
+            x: int = 0
+            y: int = 0
+
+        @component
+        class ComPerson:
+            name: str
+            health: int
+
+**Entity**
+    | Container for properties. Consists of components only.
+    | It is forbidden to add attributes to an entity dynamically.
+    | Use the pyecs.entity decorator to create entities:
+    .. code-block:: python
+
+        @entity
+        class Player(ComPosition, ComPerson):
+            pass
+
+        @entity
+        class Ball(ComPosition):
+            pass
+
+**System**
+    | Data processing logic - components and entities.
+    | Does not contain data about entities and components.
+    | Use the pyecs.System abstract class to create concrete systems:
+    .. code-block:: python
+
+        class SysInit(System):
+            def __init__(self, entities: EntityManager):
+                self.entities = entities
+
+            def start(self):
+                self.entities.init(
+                    TeamScoredGoalEvent(Team.LEFT),
+                    Spark(spark_sprite(pygame.display.Info()), 0, 0, 0, 0)
+                )
+                self.entities.add(
+                    GameStateInfo(play=True, pause=False),
+                    WaitForBallMoveEvent(1000),
+                )
+
+        class SysGravitation(System):
+            def __init__(self, entities: EntityManager):
+                self.entities = entities
+
+            def update(self):
+                for entity_with_pos in self.entities.get_with_component(ComPosition):
+                    if entity_with_pos.y > 0:
+                        entity_with_pos.y -= 1
+
+**EntityManager**
+    | Entity database.
+    | A single point of access to all entities.
+    | Use the pyecs.EntityManager class to create systems.
+    | *entities.add* - add entities.
+    | *entities.delete* - delete entities.
+    | *entities.init* - initialize entities (let manager know about entities).
+    | *entities.get_by_class* - get all entities of the specified classes.
+    | *entities.get_with_component* - Get all entities with the specified components.
+    .. code-block:: python
+
+        entities = EntityManager()
+        entities.add(Player('Ivan', 20, 1, 2), Player('Vladimir', 30, 3, 4), Ball(0, 7))
+        for player_entity in entities.get_by_class(Player):
+            print(player_entity.name)
+        for entity_with_pos in self.entities.get_with_component(ComPosition):
+            print(entity_with_pos.x, entity_with_pos.y)
+        entities.delete(*tuple(next(entities.get_by_class(Ball), [])))
+
+**SystemManager**
+    | Container for systems.
+    | Works with systems in a given order.
+    | Use the pyecs.SystemManager class to manage systems.
+    | *system_manager.start_systems* - initialize systems. Call once before the main systems update cycle.
+    | *system_manager.update_systems* - update systems status. Call in the main loop.
+    | *system_manager.stop_systems* - stop systems. Call once after the main loop completes.
+    .. code-block:: python
+
+        entities = EntityManager()
+        entities.add(Player('Ivan', 20, 1, 2), Player('Vladimir', 30, 3, 4), Ball(0, 7))
+        system_manager = SystemManager([SysPersonHealthRegeneration(entities), SysGravitation(entities)])
+        system_manager.start_systems()
+        while play:
+            system_manager.update_systems()
+            clock.tick(24)  # *pygame clock
+        system_manager.stop_systems()
+
+Examples
+--------
+* `Pong game: pygame + pyecs <https://github.com/ikvk/pyecs/tree/master/examples/pong>`_.
+
+Advantages
+----------
+* Weak code cohesion - easy to refactor and expand the codebase
+* Modularity and testability of logic - easy to test and reuse code in other projects
+* Hard to write bad code
+* Easy to follow Single Responsibility logic
+* Easy to combine entity properties
+* Easy to analyze performance
+* Easy to parallelize processing
+* Easy to work with clean data
+
+Difficulties
+------------
+It can take a lot of practice to learn how to cook ECS properly:
+
+* Data is available from anywhere - hard to find errors
+* Systems work strictly one after another
+* Recursive logic is not directly supported
+
+Newbie mistakes
+---------------
+* Inheritance of components, entities, systems
+* Ignoring the principles of ECS, such as storing data in the system
+* Raising ECS to the absolute, no one cancels the OOP
+* Adaptation of the existing project code under ECS "as is"
+* Use of recursive or reactive logic in systems
+
+Good Practices
+--------------
+* Use components - flags
+* Minimize component change locations
+* Use event entities and event systems
+* In large projects, placing ECS objects by type is not convenient (components.py, systems.py ...). Group by responsibilities (movement.py ...)
+
+Releases
+--------
+
+History of important changes: `release_notes.rst <https://github.com/ikvk/pyecs/blob/master/_docs/release_notes.rst>`_
+
+Help the project
+----------------
+
+Welcome :D
+
+⭐

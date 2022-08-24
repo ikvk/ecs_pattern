@@ -36,10 +36,9 @@ class SysGravitation(System):
     def update(self):
         if not self._gravitation_enabled:
             return
-        for com_with_pos in self.entities.get_with_component(ComPosition):
-            com_with_pos: ComPosition
-            if com_with_pos.y > 0:
-                com_with_pos.y -= 1
+        for entity_with_pos in self.entities.get_with_component(ComPosition):
+            if entity_with_pos.y > 0:
+                entity_with_pos.y -= 1
 
     def stop(self):
         self._gravitation_enabled = False
@@ -56,10 +55,10 @@ class SysPersonHealthRegeneration(System):
     def update(self):
         if not self._regeneration_enabled:
             return
-        for com_with_health in self.entities.get_with_component(ComPerson):
-            com_with_health: ComPerson
-            if com_with_health.health < 100:
-                com_with_health.health += 1
+        for entity_with_health in self.entities.get_with_component(ComPerson):
+            entity_with_health: ComPerson
+            if entity_with_health.health < 100:
+                entity_with_health.health += 1
 
     def stop(self):
         self._regeneration_enabled = False
@@ -97,6 +96,7 @@ class EcsTest(unittest.TestCase):
             next(entities.get_by_class(Ball))
         entities.init(Ball(1, 1))
         self.assertEqual(next(entities.get_by_class(Ball), None), None)
+        entities.delete(*tuple(next(entities.get_by_class(Ball), [])))  # no balls
 
         entities.add(player1, player2, ball)
         self.assertEqual(len(list(entities.get_by_class(Player))), 2)
