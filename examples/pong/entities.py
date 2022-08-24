@@ -1,4 +1,4 @@
-from pyecs import entity
+from ecs_pattern import entity
 
 from components import ComMotion, ComScore, ComTeam, ComVisible, ComWait
 

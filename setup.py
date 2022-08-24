@@ -13,10 +13,10 @@ with open("README.rst", "r", encoding='utf-8') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='pyecs',
-    version=get_version('pyecs'),
+    name='ecs-pattern',
+    version=get_version('ecs_pattern'),
     packages=setuptools.find_packages(exclude=['tests']),
-    url='https://github.com/ikvk/pyecs',
+    url='https://github.com/ikvk/ecs_pattern',
     license='Apache-2.0',
     long_description=long_description,
     long_description_content_type="text/x-rst",

@@ -1,19 +1,19 @@
 .. http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
-pyecs 🚀
-========
+ecs_pattern 🚀
+==============
 
 Implementation of the ECS template for creating games. Make a game instead of architecture for a game.
 
-`Документация на русском <https://github.com/ikvk/pyecs/blob/master/_docs/README_RUS.rst>`_.
+`Документация на русском <https://github.com/ikvk/ecs_pattern/blob/master/_docs/README_RUS.rst>`_.
 
-.. image:: https://img.shields.io/pypi/dm/pyecs.svg?style=social
+.. image:: https://img.shields.io/pypi/dm/ecs_pattern.svg?style=social
 
-===============  =====================================
+===============  ==========================================
 Python version   3.5+
 License          Apache-2.0
-PyPI             https://pypi.python.org/pypi/pyecs/
-===============  =====================================
+PyPI             https://pypi.python.org/pypi/ecs_pattern/
+===============  ==========================================
 
 Intro
 -----
@@ -34,17 +34,17 @@ Installation
 ------------
 ::
 
-    $ pip install pyecs
+    $ pip install ecs-pattern
 
-Guide to pyecs
---------------
+Guide
+-----
 
 **Component**
     | Property with object data. Contains only data, no logic.
 
     | The component is used as a mixin in entities.
 
-    | Use the pyecs.component decorator to create components:
+    | Use the ecs_pattern.component decorator to create components:
 
     .. code-block:: python
 
@@ -63,7 +63,7 @@ Guide to pyecs
 
     | It is forbidden to add attributes to an entity dynamically.
 
-    | Use the pyecs.entity decorator to create entities:
+    | Use the ecs_pattern.entity decorator to create entities:
 
     .. code-block:: python
 
@@ -80,7 +80,7 @@ Guide to pyecs
 
     | Does not contain data about entities and components.
 
-    | Use the pyecs.System abstract class to create concrete systems:
+    | Use the ecs_pattern.System abstract class to create concrete systems:
 
     .. code-block:: python
 
@@ -112,7 +112,7 @@ Guide to pyecs
 
     | A single point of access to all entities.
 
-    | Use the pyecs.EntityManager class to create systems.
+    | Use the ecs_pattern.EntityManager class to create systems.
 
     | *entities.add* - add entities.
 
@@ -139,7 +139,7 @@ Guide to pyecs
 
     | Works with systems in a given order.
 
-    | Use the pyecs.SystemManager class to manage systems.
+    | Use the ecs_pattern.SystemManager class to manage systems.
 
     | *system_manager.start_systems* - initialize systems. Call once before the main systems update cycle.
 
@@ -160,7 +160,7 @@ Guide to pyecs
 
 Examples
 --------
-* `Pong game: pygame + pyecs <https://github.com/ikvk/pyecs/tree/master/examples/pong>`_.
+* `Pong game: pygame + ecs-pattern <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong>`_.
 
 Advantages
 ----------
@@ -199,7 +199,7 @@ Good Practices
 Releases
 --------
 
-History of important changes: `release_notes.rst <https://github.com/ikvk/pyecs/blob/master/_docs/release_notes.rst>`_
+History of important changes: `release_notes.rst <https://github.com/ikvk/ecs_pattern/blob/master/_docs/release_notes.rst>`_
 
 Help the project
 ----------------

@@ -1,6 +1,6 @@
 import unittest
 
-from pyecs.ecs import component, entity, EntityManager, System, SystemManager
+from ecs_pattern import component, entity, EntityManager, System, SystemManager
 
 
 @component

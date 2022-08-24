@@ -7,7 +7,7 @@ from pygame.rect import Rect
 from pygame.event import Event
 from pygame.display import Info as VideoInfo
 from pygame.locals import QUIT, KEYDOWN, KEYUP, K_ESCAPE, K_UP, K_DOWN, K_w, K_s, K_SPACE
-from pyecs import System, EntityManager
+from ecs_pattern import System, EntityManager
 
 from components import ComMotion, ComVisible
 from entities import Ball, GameStateInfo, Racket, Score, Table, TeamScoredGoalEvent, WaitForBallMoveEvent, Spark

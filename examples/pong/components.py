@@ -1,5 +1,5 @@
 from pygame.sprite import Sprite
-from pyecs import component
+from ecs_pattern import component
 
 from consts import Team
 

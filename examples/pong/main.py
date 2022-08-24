@@ -1,7 +1,7 @@
 import os
 
 import pygame
-from pyecs import EntityManager, SystemManager
+from ecs_pattern import EntityManager, SystemManager
 
 from consts import FPS_MAX
 from entities import GameStateInfo
