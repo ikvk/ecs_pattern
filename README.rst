@@ -3,7 +3,9 @@
 ecs_pattern 🚀
 ==============
 
-Implementation of the ECS template for creating games. Make a game instead of architecture for a game.
+Implementation of the ECS template for creating games.
+
+Make a game instead of architecture for a game.
 
 `Документация на русском <https://github.com/ikvk/ecs_pattern/blob/master/_docs/README_RUS.rst>`_.
 
