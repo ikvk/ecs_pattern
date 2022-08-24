@@ -10,7 +10,7 @@ https://packaging.python.org/tutorials/packaging-projects/
     https://docs.python.org/3/distutils/packageindex.html#pypirc
 
 2. Install/update build libs:
-    C:\python\venv\pyecs310\Scripts\pip install --upgrade -r C:\kvk\develop\Python\pyecs\docs\build-requirements.txt
+    C:\python\venv\pyecs310\Scripts\pip install --upgrade -r C:\kvk\develop\Python\pyecs\_docs\build-requirements.txt
 
 3. Generating distribution archives
     cd C:\kvk\develop\Python\pyecs\
