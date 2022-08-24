@@ -1,0 +1,9 @@
+*.orig
+__pycache__
+MANIFEST
+/.idea/
+/.tox
+/*.egg-info/
+/build/
+/dist/
+_check.py

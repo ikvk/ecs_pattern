@@ -1,0 +1,23 @@
+Packaging
+=========
+
+https://packaging.python.org/tutorials/packaging-projects/
+
+* Иногда для применения некоторых настроек билда нужно удалить старые папки билдов
+
+1. Create .pypirc
+    C:\Users\v.kaukin\.pypirc
+    https://docs.python.org/3/distutils/packageindex.html#pypirc
+
+2. Install/update build libs:
+    C:\python\venv\pyecs310\Scripts\pip install --upgrade -r C:\kvk\develop\Python\pyecs\docs\build-requirements.txt
+
+3. Generating distribution archives
+    cd C:\kvk\develop\Python\pyecs\
+    C:\python\venv\pyecs310\Scripts\python.exe C:\kvk\develop\Python\pyecs\setup.py sdist bdist_wheel
+
+4. Check the distribution archives:
+    C:\python\venv\pyecs310\Scripts\python.exe -m twine check dist/*
+
+5. Uploading the distribution archives:
+    C:\python\venv\pyecs310\Scripts\python.exe -m twine upload dist/*
