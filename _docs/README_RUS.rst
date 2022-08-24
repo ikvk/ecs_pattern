@@ -16,6 +16,7 @@ PyPI             https://pypi.python.org/pypi/pyecs/
 Введение
 --------
 | ECS - Entity-Component-System - это архитектурный шаблон, созданный для разработки игр.
+
 Он отлично подходит для описания динамического виртуального мира.
 
 Основные принципы ECS:
@@ -38,8 +39,11 @@ PyPI             https://pypi.python.org/pypi/pyecs/
 
 **Component**
     | Свойство с данными объекта. Содержат только данные, без логики.
+
     | Компонент используется как миксин в сущностях.
+
     | Используйте декоратор pyecs.component для создания компонентов:
+
     .. code-block:: python
 
         @component
@@ -54,8 +58,11 @@ PyPI             https://pypi.python.org/pypi/pyecs/
 
 **Entity**
     | Контейнер для свойств. Состоит только из компонентов.
+
     | Запрещено добавлять атрибуты к сущности динамически.
+
     | Используйте декоратор pyecs.entity для создания сущностей:
+
     .. code-block:: python
 
         @entity
@@ -68,8 +75,11 @@ PyPI             https://pypi.python.org/pypi/pyecs/
 
 **System**
     | Логика обработки данных - компонентов и сущностей.
+
     | Не содержит данных о сущностях и компонентах.
+
     | Используйте абстрактный класс pyecs.System для создания конкретных систем:
+
     .. code-block:: python
 
         class SysInit(System):
@@ -97,13 +107,21 @@ PyPI             https://pypi.python.org/pypi/pyecs/
 
 **EntityManager**
     | База данных сущностей.
+
     | Единая точка доступа ко всем сущностям.
+
     | Используйте класс pyecs.EntityManager для создания систем.
+
     | *entities.add* - добавить сущности.
+
     | *entities.delete* - удалить сущности.
+
     | *entities.init* - инициализировать сущности (дать менеджеру знать о сущностях).
+
     | *entities.get_by_class* - получить все сущности указанных классов.
+
     | *entities.get_with_component* - получить все сущности с указанными компонентами.
+
     .. code-block:: python
 
         entities = EntityManager()
@@ -116,11 +134,17 @@ PyPI             https://pypi.python.org/pypi/pyecs/
 
 **SystemManager**
     | Контейнер для систем.
+
     | Работает с системами в заданном порядке.
+
     | Используйте класс pyecs.SystemManager для управления системами.
+
     | *system_manager.start_systems* - инициализировать системы. Вызовите один раз перед главным циклом обновления систем.
+
     | *system_manager.update_systems* - обновить состояние систем. Вызывайте в главном цикле.
+
     | *system_manager.stop_systems* - завершить работу систем. Вызовите один раз после завершения главного цикла.
+
     .. code-block:: python
 
         entities = EntityManager()

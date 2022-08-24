@@ -18,6 +18,7 @@ PyPI             https://pypi.python.org/pypi/pyecs/
 Intro
 -----
 | ECS - Entity-Component-System - it is an architectural pattern created for game development.
+
 It is great for describing a dynamic virtual world.
 
 Basic principles of ECS:
@@ -40,8 +41,11 @@ Guide to pyecs
 
 **Component**
     | Property with object data. Contains only data, no logic.
+
     | The component is used as a mixin in entities.
+
     | Use the pyecs.component decorator to create components:
+
     .. code-block:: python
 
         @component
@@ -56,8 +60,11 @@ Guide to pyecs
 
 **Entity**
     | Container for properties. Consists of components only.
+
     | It is forbidden to add attributes to an entity dynamically.
+
     | Use the pyecs.entity decorator to create entities:
+
     .. code-block:: python
 
         @entity
@@ -70,8 +77,11 @@ Guide to pyecs
 
 **System**
     | Data processing logic - components and entities.
+
     | Does not contain data about entities and components.
+
     | Use the pyecs.System abstract class to create concrete systems:
+
     .. code-block:: python
 
         class SysInit(System):
@@ -99,13 +109,21 @@ Guide to pyecs
 
 **EntityManager**
     | Entity database.
+
     | A single point of access to all entities.
+
     | Use the pyecs.EntityManager class to create systems.
+
     | *entities.add* - add entities.
+
     | *entities.delete* - delete entities.
+
     | *entities.init* - initialize entities (let manager know about entities).
+
     | *entities.get_by_class* - get all entities of the specified classes.
+
     | *entities.get_with_component* - Get all entities with the specified components.
+
     .. code-block:: python
 
         entities = EntityManager()
@@ -118,11 +136,17 @@ Guide to pyecs
 
 **SystemManager**
     | Container for systems.
+
     | Works with systems in a given order.
+
     | Use the pyecs.SystemManager class to manage systems.
+
     | *system_manager.start_systems* - initialize systems. Call once before the main systems update cycle.
+
     | *system_manager.update_systems* - update systems status. Call in the main loop.
+
     | *system_manager.stop_systems* - stop systems. Call once after the main loop completes.
+
     .. code-block:: python
 
         entities = EntityManager()
