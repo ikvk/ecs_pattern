@@ -1,0 +1,8 @@
+.. http://docutils.sourceforge.net/docs/user/rst/quickref.html
+
+Pong game
+=========
+
+Classic game, implemented on pygame + ecs_pattern
+
+.. image:: https://github.com/ikvk/ecs_pattern/blob/master/examples/pong/_docs/pong_screen.png

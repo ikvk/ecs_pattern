@@ -7,12 +7,15 @@ ecs_pattern 🚀
 
 Делайте игру вместо архитектуры для игры.
 
+`Documentation in English <https://github.com/ikvk/ecs_pattern/blob/master/README.rst>`_.
+
 .. image:: https://img.shields.io/pypi/dm/ecs_pattern.svg?style=social
 
 ===============  ==========================================
-Python version   3.5+
+Python version   3.3+
 License          Apache-2.0
 PyPI             https://pypi.python.org/pypi/ecs_pattern/
+Dependencies     dataclasses before 3.7, typing before 3.5
 ===============  ==========================================
 
 Введение
@@ -118,6 +121,10 @@ PyPI             https://pypi.python.org/pypi/ecs_pattern/
 
     | *entities.delete* - удалить сущности.
 
+    | *entities.delete_buffer_add* - сохранить сущности в буфер удаления, чтобы удалить позже.
+
+    | *entities.delete_buffer_purge* - удалить все сущности из буфера удаления.
+
     | *entities.init* - инициализировать сущности (дать менеджеру знать о сущностях).
 
     | *entities.get_by_class* - получить все сущности указанных классов.
@@ -128,10 +135,12 @@ PyPI             https://pypi.python.org/pypi/ecs_pattern/
 
         entities = EntityManager()
         entities.add(Player('Ivan', 20, 1, 2), Player('Vladimir', 30, 3, 4), Ball(0, 7))
-        for player_entity in entities.get_by_class(Player):
-            print(player_entity.name)
         for entity_with_pos in self.entities.get_with_component(ComPosition):
             print(entity_with_pos.x, entity_with_pos.y)
+        for player_entity in entities.get_by_class(Player):
+            print(player_entity.name)
+            entities.delete_buffer_add(player_entity)
+        entities.delete_buffer_purge()
         entities.delete(*tuple(next(entities.get_by_class(Ball), [])))
 
 **SystemManager**
@@ -160,7 +169,7 @@ PyPI             https://pypi.python.org/pypi/ecs_pattern/
 
 Примеры
 -------
-* `Игра Pong: pygame + ecs-pattern <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong>`_.
+* `Игра Pong: pygame + ecs_pattern <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong>`_.
 
 Преимущества
 ------------
@@ -188,6 +197,7 @@ PyPI             https://pypi.python.org/pypi/ecs_pattern/
 * Возведение ECS в абсолют, ООП никто не отменяет
 * Адаптация существующего кода проекта под ECS "как есть"
 * Использование рекурсивной или реактивной логики в системах
+* Использование EntityManager.delete в циклах get_by_class, get_with_component
 
 Хорошие практики
 ----------------
@@ -195,6 +205,7 @@ PyPI             https://pypi.python.org/pypi/ecs_pattern/
 * Минимизируйте места изменения компонента
 * Используйте сущности-события и системы событий
 * В больших проектах размещение объектов ECS по типам не удобно (components.py, systems.py ...). Группируйте по обязанностям (movement.py ...)
+* Не используйте методы в компонентах и сущностях
 
 Релизы
 ------
@@ -203,7 +214,7 @@ PyPI             https://pypi.python.org/pypi/ecs_pattern/
 
 Помощь проекту
 --------------
-
-Приветствуется :D
-
-⭐
+* Нашли ошибку или есть предложение -  issue / merge request 🎯
+* Нечем помочь этому проекту - помогите другому открытому проекту, который используете ✋
+* Некуда деть деньги - потратьте на семью, друзей, близких или окружающих вас людей 💰
+* Поставьте проекту ⭐

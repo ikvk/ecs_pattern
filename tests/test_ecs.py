@@ -119,6 +119,14 @@ class EcsTest(unittest.TestCase):
         self.assertEqual(len(list(entities.get_with_component(ComPosition))), 0)
         self.assertEqual(len(list(entities.get_with_component(ComPerson))), 0)
 
+        entities.add(player1, player2)
+        self.assertEqual(len(list(entities.get_by_class(Player))), 2)
+        entities.delete_buffer_purge()
+        self.assertEqual(len(list(entities.get_by_class(Player))), 2)
+        entities.delete_buffer_add(player1, player2)
+        entities.delete_buffer_purge()
+        self.assertEqual(len(list(entities.get_by_class(Player))), 0)
+
     def test_system(self):
         player1 = Player('Ivan', 20, 1, 2)
         player2 = Player('Vladimir', 30, 3, 4)

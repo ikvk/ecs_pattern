@@ -147,13 +147,11 @@ class SysMovement(System):
             ball.speed_y = 0
         # kill sparks
         table_rect = Rect(table.x, table.y, table.sprite.rect.width, table.sprite.rect.height)
-        spark_for_del_list = []
         for spark in self.entities.get_by_class(Spark):
             if not table_rect.colliderect(
                     Rect(spark.x, spark.y, spark.sprite.rect.width, spark.sprite.rect.height)):
-                spark_for_del_list.append(spark)
-        for spark_for_del in spark_for_del_list:
-            self.entities.delete(spark_for_del)
+                self.entities.delete_buffer_add(spark)
+        self.entities.delete_buffer_purge()
 
 
 class SysGoal(System):

@@ -7,14 +7,15 @@ Implementation of the ECS template for creating games.
 
 Make a game instead of architecture for a game.
 
-`Документация на русском <https://github.com/ikvk/ecs_pattern/blob/master/_docs/README_RUS.rst>`_.
+`Документация на Русском <https://github.com/ikvk/ecs_pattern/blob/master/_docs/README_RUS.rst>`_.
 
 .. image:: https://img.shields.io/pypi/dm/ecs_pattern.svg?style=social
 
 ===============  ==========================================
-Python version   3.5+
+Python version   3.3+
 License          Apache-2.0
 PyPI             https://pypi.python.org/pypi/ecs_pattern/
+Dependencies     dataclasses before 3.7, typing before 3.5
 ===============  ==========================================
 
 Intro
@@ -120,6 +121,10 @@ Guide
 
     | *entities.delete* - delete entities.
 
+    | *entities.delete_buffer_add* - save entities to the delete buffer to delete later.
+
+    | *entities.delete_buffer_purge* - delete all entities from the delete buffer.
+
     | *entities.init* - initialize entities (let manager know about entities).
 
     | *entities.get_by_class* - get all entities of the specified classes.
@@ -130,10 +135,12 @@ Guide
 
         entities = EntityManager()
         entities.add(Player('Ivan', 20, 1, 2), Player('Vladimir', 30, 3, 4), Ball(0, 7))
-        for player_entity in entities.get_by_class(Player):
-            print(player_entity.name)
         for entity_with_pos in self.entities.get_with_component(ComPosition):
             print(entity_with_pos.x, entity_with_pos.y)
+        for player_entity in entities.get_by_class(Player):
+            print(player_entity.name)
+            entities.delete_buffer_add(player_entity)
+        entities.delete_buffer_purge()
         entities.delete(*tuple(next(entities.get_by_class(Ball), [])))
 
 **SystemManager**
@@ -162,7 +169,7 @@ Guide
 
 Examples
 --------
-* `Pong game: pygame + ecs-pattern <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong>`_.
+* `Pong game: pygame + ecs_pattern <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong>`_.
 
 Advantages
 ----------
@@ -190,6 +197,7 @@ Newbie mistakes
 * Raising ECS to the absolute, no one cancels the OOP
 * Adaptation of the existing project code under ECS "as is"
 * Use of recursive or reactive logic in systems
+* Using EntityManager.delete in get_by_class, get_with_component loops
 
 Good Practices
 --------------
@@ -197,6 +205,7 @@ Good Practices
 * Minimize component change locations
 * Use event entities and event systems
 * In large projects, placing ECS objects by type is not convenient (components.py, systems.py ...). Group by responsibilities (movement.py ...)
+* Do not use methods in components and entities
 
 Releases
 --------
@@ -205,7 +214,7 @@ History of important changes: `release_notes.rst <https://github.com/ikvk/ecs_pa
 
 Help the project
 ----------------
-
-Welcome :D
-
-⭐
+* Found a bug or have a suggestion - issue / merge request 🎯
+* There is nothing to help this project with - help another open project that you are using ✋
+* Nowhere to put the money - spend it on family, friends, loved ones or people around you 💰
+* Star the project ⭐

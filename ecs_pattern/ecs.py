@@ -5,6 +5,7 @@ ECS - Entity Component system
 from typing import Iterable, Iterator, Any
 from dataclasses import dataclass
 from functools import partial
+from collections import deque
 
 # all component classes must be decorated with this function
 component = dataclass
@@ -20,6 +21,7 @@ class EntityManager:
         self._entity_map = {}  # Person: [ent1, ent2]
         self._entity_components_map = {}  # Person: (MoveCom, DamageCom, NameCom)
         self._set_cache_map = {}  # (MoveCom, DamageCom, NameCom): {MoveCom, DamageCom, NameCom}
+        self._delete_entity_buffer = deque()  # deque([Person1, Person2])
 
     def add(self, *entity_value_list: Any):
         """Add entities to world"""
@@ -38,6 +40,17 @@ class EntityManager:
         for entity_value in entity_value_list:
             entity_value_class = entity_value.__class__
             self._entity_map[entity_value_class].remove(entity_value)
+
+    def delete_buffer_add(self, *entity_value_list: Any):
+        """Save entities into delete buffer for delete them from world later"""
+        for entity_value in entity_value_list:
+            self._delete_entity_buffer.append(entity_value)
+
+    def delete_buffer_purge(self):
+        """Delete all entities from delete buffer"""
+        for delete_entity in self._delete_entity_buffer:
+            self.delete(delete_entity)
+        self._delete_entity_buffer.clear()
 
     def init(self, *entity_list: Any):
         """
