@@ -3,7 +3,7 @@
 ecs_pattern 🚀
 ==============
 
-Implementation of the ECS template for creating games.
+Implementation of the ECS pattern for creating games.
 
 Make a game instead of architecture for a game.
 
@@ -17,6 +17,8 @@ License          Apache-2.0
 PyPI             https://pypi.python.org/pypi/ecs_pattern/
 Dependencies     dataclasses before 3.7, typing before 3.5
 ===============  ==========================================
+
+.. contents::
 
 Intro
 -----

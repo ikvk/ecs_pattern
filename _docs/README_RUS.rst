@@ -18,6 +18,8 @@ PyPI             https://pypi.python.org/pypi/ecs_pattern/
 Dependencies     dataclasses before 3.7, typing before 3.5
 ===============  ==========================================
 
+.. contents::
+
 Введение
 --------
 | ECS - Entity-Component-System - это архитектурный шаблон, созданный для разработки игр.

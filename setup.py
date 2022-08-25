@@ -22,7 +22,7 @@ setuptools.setup(
     long_description_content_type="text/x-rst",
     author='Vladimir Kaukin',
     author_email='KaukinVK@ya.ru',
-    description='Implementation of the ECS template for creating games',
+    description='Implementation of the ECS pattern for creating games',
     keywords=['python3', 'python', 'ecs', 'pattern', 'architecture', 'games'],
     classifiers=[
         "Programming Language :: Python :: 3",
