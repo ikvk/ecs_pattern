@@ -1,3 +1,7 @@
+1.1.1
+=====
+* Update meta info
+
 1.1.0
 =====
 * Added delete buffer: EntityManager.delete_buffer_add, EntityManager.delete_buffer_purge
