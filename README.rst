@@ -53,6 +53,8 @@ Guide
 
     | The component is used as a mixin in entities.
 
+    | Technically this is python dataclass
+
     | Use the ecs_pattern.component decorator to create components:
 
     .. code-block:: python
@@ -71,6 +73,8 @@ Guide
     | Container for properties. Consists of components only.
 
     | It is forbidden to add attributes to an entity dynamically.
+
+    | Technically this is python dataclass with slots=True
 
     | Use the ecs_pattern.entity decorator to create entities:
 
