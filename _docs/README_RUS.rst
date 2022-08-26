@@ -44,6 +44,10 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 Руководство
 -----------
 
+.. code-block:: python
+
+    from ecs_pattern import component, entity, EntityManager, System, SystemManager
+
 **Component**
     | Свойство с данными объекта. Содержат только данные, без логики.
 

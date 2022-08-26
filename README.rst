@@ -44,6 +44,10 @@ Installation
 Guide
 -----
 
+.. code-block:: python
+
+    from ecs_pattern import component, entity, EntityManager, System, SystemManager
+
 **Component**
     | Property with object data. Contains only data, no logic.
 
