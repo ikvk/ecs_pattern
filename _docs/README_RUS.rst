@@ -34,6 +34,8 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 | *Component* - Свойство с данными объекта
 | *Entity* - Контейнер для свойств
 | *System* - Логика обработки данных
+| *EntityManager* - База данных сущностей
+| *SystemManager* - Контейнер для систем
 
 Установка
 ---------

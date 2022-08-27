@@ -34,6 +34,8 @@ Basic principles of ECS:
 | *Component* - Property with object data
 | *Entity* - Container for properties
 | *System* - Data processing logic
+| *EntityManager* - Entity database
+| *SystemManager* - Container for systems
 
 Installation
 ------------
