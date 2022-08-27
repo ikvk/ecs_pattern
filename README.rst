@@ -125,7 +125,7 @@ Guide
 
     | A single point of access to all entities.
 
-    | Use the ecs_pattern.EntityManager class to create systems.
+    | Use the ecs_pattern class.EntityManager for creating an entity manager.
 
     | *entities.add* - add entities.
 
@@ -133,7 +133,7 @@ Guide
 
     | *entities.delete_buffer_add* - save entities to the delete buffer to delete later.
 
-    | *entities.delete_buffer_purge* - delete all entities from the delete buffer.
+    | *entities.delete_buffer_purge* - delete all entities in the deletion buffer and clear the buffer.
 
     | *entities.init* - initialize entities (let manager know about entities).
 
