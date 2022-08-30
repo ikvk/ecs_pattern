@@ -34,6 +34,8 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 | *Component* - Свойство с данными объекта
 | *Entity* - Контейнер для свойств
 | *System* - Логика обработки данных
+| *EntityManager* - База данных сущностей
+| *SystemManager* - Контейнер для систем
 
 Установка
 ---------
@@ -125,7 +127,7 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     | Единая точка доступа ко всем сущностям.
 
-    | Используйте класс ecs_pattern.EntityManager для создания систем.
+    | Используйте класс ecs_pattern.EntityManager для создания менеджера сущностей.
 
     | *entities.add* - добавить сущности.
 
@@ -133,7 +135,7 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     | *entities.delete_buffer_add* - сохранить сущности в буфер удаления, чтобы удалить позже.
 
-    | *entities.delete_buffer_purge* - удалить все сущности из буфера удаления.
+    | *entities.delete_buffer_purge* - удалить все сущности в буфере удаления и очистить буффер.
 
     | *entities.init* - инициализировать сущности (дать менеджеру знать о сущностях).
 
