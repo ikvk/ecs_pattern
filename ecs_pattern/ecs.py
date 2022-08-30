@@ -38,8 +38,7 @@ class EntityManager:
     def delete(self, *entity_value_list: Any):
         """Delete entities from world"""
         for entity_value in entity_value_list:
-            entity_value_class = entity_value.__class__
-            self._entity_map[entity_value_class].remove(entity_value)
+            self._entity_map[entity_value.__class__].remove(entity_value)
 
     def delete_buffer_add(self, *entity_value_list: Any):
         """Save entities into delete buffer for delete them from world later"""
@@ -63,7 +62,10 @@ class EntityManager:
             self.delete(ent)
 
     def get_by_class(self, *entity_class_val_list: type) -> Iterator[Any]:
-        """Get all entities by specified entity class in specified order"""
+        """
+        Get all entities by specified entity class in specified order
+        raise KeyError for uninitialized (never added) entities
+        """
         for entity_class_val in entity_class_val_list:
             yield from self._entity_map[entity_class_val]
 
@@ -71,6 +73,7 @@ class EntityManager:
         """
         Get all entities that contains all specified component classes
         Sometimes it will be useful to warm up the cache
+        raise KeyError for uninitialized (never added) entities
         """
         for entity_class, entity_component_list in self._entity_components_map.items():
             entity_component_set = \
