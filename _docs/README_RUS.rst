@@ -55,9 +55,9 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     | Компонент используется как миксин в сущностях.
 
-    | Технически это python dataclass
+    | Используйте декоратор ecs_pattern.component для создания компонентов.
 
-    | Используйте декоратор ecs_pattern.component для создания компонентов:
+    | Технически это python dataclass.
 
     .. code-block:: python
 
@@ -76,9 +76,9 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     | Запрещено добавлять атрибуты к сущности динамически.
 
-    | Технически это python dataclass со slots=True
+    | Используйте декоратор ecs_pattern.entity для создания сущностей.
 
-    | Используйте декоратор ecs_pattern.entity для создания сущностей:
+    | Технически это python dataclass со slots=True.
 
     .. code-block:: python
 
