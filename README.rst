@@ -129,17 +129,17 @@ Guide
 
     | Use the ecs_pattern class.EntityManager for creating an entity manager.
 
-    | *entities.add* - add entities.
+    | *entities.add* - Add entities.
 
-    | *entities.delete* - delete entities.
+    | *entities.delete* - Delete entities.
 
-    | *entities.delete_buffer_add* - save entities to the delete buffer to delete later.
+    | *entities.delete_buffer_add* - Save entities to the delete buffer to delete later.
 
-    | *entities.delete_buffer_purge* - delete all entities in the deletion buffer and clear the buffer.
+    | *entities.delete_buffer_purge* - Delete all entities in the deletion buffer and clear the buffer.
 
     | *entities.init* - Let manager know about entities. KeyError are raising on access to unknown entities.
 
-    | *entities.get_by_class* - get all entities of the specified classes.
+    | *entities.get_by_class* - Get all entities of the specified classes. Respects the order of components.
 
     | *entities.get_with_component* - Get all entities with the specified components.
 
@@ -162,11 +162,11 @@ Guide
 
     | Use the ecs_pattern.SystemManager class to manage systems.
 
-    | *system_manager.start_systems* - initialize systems. Call once before the main systems update cycle.
+    | *system_manager.start_systems* - Initialize systems. Call once before the main systems update cycle.
 
-    | *system_manager.update_systems* - update systems status. Call in the main loop.
+    | *system_manager.update_systems* - Update systems status. Call in the main loop.
 
-    | *system_manager.stop_systems* - stop systems. Call once after the main loop completes.
+    | *system_manager.stop_systems* - Stop systems. Call once after the main loop completes.
 
     .. code-block:: python
 

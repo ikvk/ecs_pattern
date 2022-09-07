@@ -129,19 +129,19 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     | Используйте класс ecs_pattern.EntityManager для создания менеджера сущностей.
 
-    | *entities.add* - добавить сущности.
+    | *entities.add* - Добавить сущности.
 
-    | *entities.delete* - удалить сущности.
+    | *entities.delete* - Удалить сущности.
 
-    | *entities.delete_buffer_add* - сохранить сущности в буфер удаления, чтобы удалить позже.
+    | *entities.delete_buffer_add* - Сохранить сущности в буфер удаления, чтобы удалить позже.
 
-    | *entities.delete_buffer_purge* - удалить все сущности в буфере удаления и очистить буффер.
+    | *entities.delete_buffer_purge* - Удалить все сущности в буфере удаления и очистить буффер.
 
     | *entities.init* - Дать менеджеру знать о сущностях. При доступе к неизвестным объектам бросается KeyError.
 
-    | *entities.get_by_class* - получить все сущности указанных классов.
+    | *entities.get_by_class* - Получить все сущности указанных классов. Учитывает порядок компонентов.
 
-    | *entities.get_with_component* - получить все сущности с указанными компонентами.
+    | *entities.get_with_component* - Получить все сущности с указанными компонентами.
 
     .. code-block:: python
 
@@ -162,11 +162,11 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     | Используйте класс ecs_pattern.SystemManager для управления системами.
 
-    | *system_manager.start_systems* - инициализировать системы. Вызовите один раз перед главным циклом обновления систем.
+    | *system_manager.start_systems* - Инициализировать системы. Вызовите один раз перед главным циклом обновления систем.
 
-    | *system_manager.update_systems* - обновить состояние систем. Вызывайте в главном цикле.
+    | *system_manager.update_systems* - Обновить состояние систем. Вызывайте в главном цикле.
 
-    | *system_manager.stop_systems* - завершить работу систем. Вызовите один раз после завершения главного цикла.
+    | *system_manager.stop_systems* - Завершить работу систем. Вызовите один раз после завершения главного цикла.
 
     .. code-block:: python
 
