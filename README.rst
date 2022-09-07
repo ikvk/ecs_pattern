@@ -216,7 +216,7 @@ Good Practices
 * Use components - flags
 * Minimize component change locations
 * Use event entities and event systems
-* In large projects, placing ECS objects by type is not convenient (components.py, systems.py ...). Group by responsibilities (movement.py ...)
+* In large projects placing ECS objects by type may be not convenient (components.py, systems.py ...). Group by responsibilities (movement.py ...)
 * Do not use methods in components and entities
 
 Releases
