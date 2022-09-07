@@ -112,6 +112,7 @@ class EcsTest(unittest.TestCase):
         self.assertEqual(len(list(entities.get_by_class(Ball))), 1)
         self.assertEqual(len(list(entities.get_with_component(ComPosition))), 1)
         self.assertEqual(len(list(entities.get_with_component(ComPerson))), 0)
+        self.assertEqual(len(list(entities.get_with_component(ComPerson, ComPosition))), 0)
 
         entities.delete(ball)
         self.assertEqual(len(list(entities.get_by_class(Player))), 0)

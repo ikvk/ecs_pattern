@@ -137,7 +137,7 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     | *entities.delete_buffer_purge* - удалить все сущности в буфере удаления и очистить буффер.
 
-    | *entities.init* - инициализировать сущности (дать менеджеру знать о сущностях).
+    | *entities.init* - Дать менеджеру знать о сущностях. При доступе к неизвестным объектам бросается KeyError.
 
     | *entities.get_by_class* - получить все сущности указанных классов.
 

@@ -54,7 +54,7 @@ class EntityManager:
     def init(self, *entity_list: Any):
         """
         Let entity manager to "know" about entities before work
-        Sometimes it is useful to do it for write clear code, for example:
+        If manager do not know about entity, it will raise KeyError on access to it.
         event: SomeEvent = next(self.entities.get_by_class(SomeEvent), None)
         """
         for ent in entity_list:

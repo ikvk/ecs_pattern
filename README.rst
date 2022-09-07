@@ -137,7 +137,7 @@ Guide
 
     | *entities.delete_buffer_purge* - delete all entities in the deletion buffer and clear the buffer.
 
-    | *entities.init* - initialize entities (let manager know about entities).
+    | *entities.init* - Let manager know about entities. KeyError are raising on access to unknown entities.
 
     | *entities.get_by_class* - get all entities of the specified classes.
 
