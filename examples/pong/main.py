@@ -33,7 +33,7 @@ def pong():
 
     game_state_info: GameStateInfo = next(entities.get_by_class(GameStateInfo))
     while game_state_info.play:
-        clock.tick(FPS_MAX)  # tick_busy_loop точный + ест проц, tick грубый + не ест проц
+        clock.tick_busy_loop(FPS_MAX)  # tick_busy_loop точный + ест проц, tick грубый + не ест проц
         system_manager.update_systems()
         pygame.display.flip()  # draw changes on screen
 
