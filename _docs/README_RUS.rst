@@ -129,6 +129,8 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     | Используйте класс ecs_pattern.EntityManager для создания менеджера сущностей.
 
+    | Временная сложность get_by_class и get_with_component - как у словаря
+
     | *entities.add* - Добавить сущности.
 
     | *entities.delete* - Удалить сущности.
