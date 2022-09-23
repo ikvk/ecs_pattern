@@ -148,7 +148,11 @@ Guide
     .. code-block:: python
 
         entities = EntityManager()
-        entities.add(Player('Ivan', 20, 1, 2), Player('Vladimir', 30, 3, 4), Ball(0, 7))
+        entities.add(
+            Player('Ivan', 20, 1, 2),
+            Player('Vladimir', 30, 3, 4),
+            Ball(0, 7)
+        )
         for entity_with_pos in self.entities.get_with_component(ComPosition):
             print(entity_with_pos.x, entity_with_pos.y)
         for player_entity in entities.get_by_class(Player):
@@ -173,8 +177,15 @@ Guide
     .. code-block:: python
 
         entities = EntityManager()
-        entities.add(Player('Ivan', 20, 1, 2), Player('Vladimir', 30, 3, 4), Ball(0, 7))
-        system_manager = SystemManager([SysPersonHealthRegeneration(entities), SysGravitation(entities)])
+        entities.add(
+            Player('Ivan', 20, 1, 2),
+            Player('Vladimir', 30, 3, 4),
+            Ball(0, 7)
+        )
+        system_manager = SystemManager([
+            SysPersonHealthRegeneration(entities),
+            SysGravitation(entities)
+        ])
         system_manager.start_systems()
         while play:
             system_manager.update_systems()
@@ -218,7 +229,6 @@ Good Practices
 * Use components - flags
 * Minimize component change locations
 * Use event entities and event systems
-* In large projects placing ECS objects by type may be not convenient (components.py, systems.py ...). Group by responsibilities (movement.py ...)
 * Do not use methods in components and entities
 
 Releases

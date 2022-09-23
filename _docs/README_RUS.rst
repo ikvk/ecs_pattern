@@ -148,7 +148,11 @@ Dependencies     dataclasses before 3.7, typing before 3.5
     .. code-block:: python
 
         entities = EntityManager()
-        entities.add(Player('Ivan', 20, 1, 2), Player('Vladimir', 30, 3, 4), Ball(0, 7))
+        entities.add(
+            Player('Ivan', 20, 1, 2),
+            Player('Vladimir', 30, 3, 4),
+            Ball(0, 7)
+        )
         for entity_with_pos in self.entities.get_with_component(ComPosition):
             print(entity_with_pos.x, entity_with_pos.y)
         for player_entity in entities.get_by_class(Player):
@@ -173,8 +177,15 @@ Dependencies     dataclasses before 3.7, typing before 3.5
     .. code-block:: python
 
         entities = EntityManager()
-        entities.add(Player('Ivan', 20, 1, 2), Player('Vladimir', 30, 3, 4), Ball(0, 7))
-        system_manager = SystemManager([SysPersonHealthRegeneration(entities), SysGravitation(entities)])
+        entities.add(
+            Player('Ivan', 20, 1, 2),
+            Player('Vladimir', 30, 3, 4),
+            Ball(0, 7)
+        )
+        system_manager = SystemManager([
+            SysPersonHealthRegeneration(entities),
+            SysGravitation(entities)
+        ])
         system_manager.start_systems()
         while play:
             system_manager.update_systems()
@@ -218,7 +229,6 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 * Используйте компоненты - флаги
 * Минимизируйте места изменения компонента
 * Используйте сущности-события и системы событий
-* В больших проектах размещение объектов ECS по типам может быть не удобно (components.py, systems.py ...). Группируйте по обязанностям (movement.py ...)
 * Не используйте методы в компонентах и сущностях
 
 Релизы
