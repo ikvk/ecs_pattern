@@ -190,7 +190,7 @@ class SysControl(System):
         self.move_keys = (K_w, K_s, K_UP, K_DOWN)
         self.event_types = (KEYDOWN, KEYUP, QUIT)  # white list
         self.game_state_info = None
-        self.pressed_keys = []
+        self.pressed_keys = set()
 
     def start(self):
         self.game_state_info = next(self.entities.get_by_class(GameStateInfo))
@@ -214,7 +214,7 @@ class SysControl(System):
                 racket: Racket
 
                 if event_type == KEYDOWN:
-                    self.pressed_keys.append(event_key)
+                    self.pressed_keys.add(event_key)
                 elif event_type == KEYUP:
                     self.pressed_keys.remove(event_key)
 

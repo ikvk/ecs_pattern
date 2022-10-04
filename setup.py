@@ -23,7 +23,7 @@ setuptools.setup(
     author='Vladimir Kaukin',
     author_email='KaukinVK@ya.ru',
     description='Implementation of the ECS pattern for creating games',
-    keywords=['python3', 'python', 'ecs', 'pattern', 'architecture', 'games'],
+    keywords=['python3', 'python', 'ecs', 'pattern', 'architecture', 'games', 'gamedev'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License",

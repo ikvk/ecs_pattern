@@ -1,3 +1,8 @@
+1.1.2
+=====
+* Update meta info, docs
+* Improve Pong example
+
 1.1.1
 =====
 * Update meta info

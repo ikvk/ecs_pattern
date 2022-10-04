@@ -141,7 +141,7 @@ Guide
 
     | *entities.init* - Let manager know about entities. KeyError are raising on access to unknown entities.
 
-    | *entities.get_by_class* - Get all entities of the specified classes. Respects the order of components.
+    | *entities.get_by_class* - Get all entities of the specified classes. Respects the order of entities.
 
     | *entities.get_with_component* - Get all entities with the specified components.
 
