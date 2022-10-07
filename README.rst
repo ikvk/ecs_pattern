@@ -91,7 +91,7 @@ Guide
             pass
 
 **System**
-    | Data processing logic - components and entities.
+    | Entity processing logic.
 
     | Does not contain data about entities and components.
 
