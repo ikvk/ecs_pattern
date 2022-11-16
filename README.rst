@@ -50,6 +50,12 @@ Guide
 
     from ecs_pattern import component, entity, EntityManager, System, SystemManager
 
+* Describe components - component
+* Describe entities based on components - entity
+* Distribute the responsibility of processing entities by systems - System
+* Store entities in entity manager - EntityManager
+* Manage your systems with SystemManager
+
 **Component**
     | Property with object data. Contains only data, no logic.
 

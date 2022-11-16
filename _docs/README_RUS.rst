@@ -50,6 +50,12 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
     from ecs_pattern import component, entity, EntityManager, System, SystemManager
 
+* Опишите компоненты - component
+* Опишите сущности на основе компонентов - entity
+* Распределите ответственность обработки сущностей по системам  - System
+* Храните сущности в менеджере сущностей - EntityManager
+* Управляйте системами менеджером систем - SystemManager
+
 **Component**
     | Свойство с данными объекта. Содержат только данные, без логики.
 
