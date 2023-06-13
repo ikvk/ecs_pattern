@@ -159,13 +159,13 @@ Guide
             Player('Vladimir', 30, 3, 4),
             Ball(0, 7)
         )
-        for entity_with_pos in self.entities.get_with_component(ComPosition):
+        for entity_with_pos in entities.get_with_component(ComPosition):
             print(entity_with_pos.x, entity_with_pos.y)
         for player_entity in entities.get_by_class(Player):
             print(player_entity.name)
             entities.delete_buffer_add(player_entity)
         entities.delete_buffer_purge()
-        entities.delete(*tuple(next(entities.get_by_class(Ball), [])))
+        entities.delete(*tuple(entities.get_by_class(Ball)))  # one line del
 
 **SystemManager**
     | Container for systems.

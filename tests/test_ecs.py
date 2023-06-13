@@ -96,7 +96,7 @@ class EcsTest(unittest.TestCase):
             next(entities.get_by_class(Ball))
         entities.init(Ball(1, 1))
         self.assertEqual(next(entities.get_by_class(Ball), None), None)
-        entities.delete(*tuple(next(entities.get_by_class(Ball), [])))  # no balls, no raise
+        entities.delete(*tuple(entities.get_by_class(Ball)))  # no balls, no raise
 
         entities.add(player1, player2, ball)
         self.assertEqual(len(list(entities.get_by_class(Player))), 2)
