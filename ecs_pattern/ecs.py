@@ -63,7 +63,7 @@ class EntityManager:
 
     def get_by_class(self, *entity_class_val_list: type) -> Iterator[Any]:
         """
-        Get all entities by specified entity class in specified order
+        Get all entities by specified entity classes in specified order
         raise KeyError for uninitialized (never added) entities
         """
         for entity_class_val in entity_class_val_list:

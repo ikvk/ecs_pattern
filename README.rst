@@ -232,10 +232,10 @@ Newbie mistakes
 
 Good Practices
 --------------
-* Use components - flags
+* Use components with event flags
 * Minimize component change locations
 * Use event entities and event systems
-* Do not use methods in components and entities
+* Do not create methods in components and entities
 
 Releases
 --------
