@@ -232,10 +232,35 @@ Newbie mistakes
 
 Good Practices
 --------------
-* Use components with event flags
+* Use "Singleton" components with data and flags
 * Minimize component change locations
-* Use event entities and event systems
 * Do not create methods in components and entities
+* Use packages to separate scenes
+
+Project tree example:
+::
+
+    /common_tools
+        __init__.py
+        resources.py
+        i18n.py
+        gui.py
+        consts.py
+        components.py
+        math.py
+    /menu_scene
+        __init__.py
+        entities.py
+        main_loop.py
+        surfaces.py
+        systems.py
+    /game_scene
+        __init__.py
+        entities.py
+        main_loop.py
+        surfaces.py
+        systems.py
+    main.py
 
 Releases
 --------

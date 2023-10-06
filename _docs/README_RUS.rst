@@ -232,10 +232,35 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 
 Хорошие практики
 ----------------
-* Используйте компоненты с флагами-событиями
+* Используйте компоненты "одиночки (Singleton)" с данными и флагами
 * Минимизируйте места изменения компонента
-* Используйте сущности-события и системы событий
 * Не создавайте методы в компонентах и сущностях
+* Используйте пакеты для разделения сцен
+
+Пример дерева проекта:
+::
+
+    /common_tools
+        __init__.py
+        resources.py
+        i18n.py
+        gui.py
+        consts.py
+        components.py
+        math.py
+    /menu_scene
+        __init__.py
+        entities.py
+        main_loop.py
+        surfaces.py
+        systems.py
+    /game_scene
+        __init__.py
+        entities.py
+        main_loop.py
+        surfaces.py
+        systems.py
+    main.py
 
 Релизы
 ------
