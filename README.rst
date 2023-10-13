@@ -206,7 +206,7 @@ Advantages
 ----------
 * Weak code cohesion - easy to refactor and expand the codebase
 * Modularity and testability of logic - easy to test and reuse code in other projects
-* Following the principles of the template prevents you from writing bad code
+* Following the principles of the pattern prevents you from writing bad code
 * Easy to follow Single Responsibility logic
 * Easy to combine entity properties
 * Easy to analyze performance
