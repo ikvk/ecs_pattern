@@ -3,7 +3,7 @@
 ecs_pattern 🚀
 ==============
 
-Implementation of the ECS pattern for creating games.
+Implementation of the ECS pattern (Entity Component System) for creating games.
 
 Make a game instead of architecture for a game.
 
