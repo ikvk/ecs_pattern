@@ -1,3 +1,7 @@
+1.1.3
+=====
+* Update docs
+
 1.1.2
 =====
 * Update meta info, docs

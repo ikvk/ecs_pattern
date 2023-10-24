@@ -134,9 +134,7 @@ System
 
 EntityManager
 ------------------------------------------------------------------------------------------------------------------------
-    | Entity database.
-
-    | A single point of access to all entities.
+    | Container for entities.
 
     | Use the ecs_pattern class.EntityManager for creating an entity manager.
 
@@ -210,22 +208,18 @@ Examples
 
 Advantages
 ========================================================================================================================
-* Weak code cohesion - easy to refactor and expand the codebase
-* Modularity and testability of logic - easy to test and reuse code in other projects
-* Following the principles of the pattern prevents you from writing bad code
-* Easy to follow Single Responsibility logic
-* Easy to combine entity properties
-* Easy to analyze performance
-* Easy to parallelize processing
-* Easy to work with clean data
+* Memory efficient - Component and Entity use dataclass
+* Convenient search for objects - by entity class and by entity components
+* Flexibility - loose coupling in the code allows you to quickly expand the project
+* Modularity - the code is easy to test, analyze performance, and reuse
+* Execution control - systems work strictly one after another
+* Following the principles of the pattern helps to write quality code
+* Compact implementation
 
 Difficulties
 ========================================================================================================================
-It can take a lot of practice to learn how to cook ECS properly:
-
+* It can take a lot of practice to learn how to cook ECS properly:
 * Data is available from anywhere - hard to find errors
-* Systems work strictly one after another
-* Recursive logic is not directly supported
 
 Newbie mistakes
 ========================================================================================================================
@@ -241,6 +235,7 @@ Good Practices
 * Use "Singleton" components with data and flags
 * Minimize component change locations
 * Do not create methods in components and entities
+* Divide the project into scenes, a scene can be considered a cycle for the SystemManager with its EntityManager
 * Use packages to separate scenes
 
 Project tree example:
