@@ -1,7 +1,8 @@
 .. http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
+========================================================================================================================
 ecs_pattern 🚀
-==============
+========================================================================================================================
 
 Implementation of the ECS pattern (Entity Component System) for creating games.
 
@@ -21,7 +22,7 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 .. contents::
 
 Intro
------
+========================================================================================================================
 | ECS - Entity-Component-System - it is an architectural pattern created for game development.
 
 It is great for describing a dynamic virtual world.
@@ -38,13 +39,13 @@ Basic principles of ECS:
 | *SystemManager* - Container for systems
 
 Installation
-------------
+========================================================================================================================
 ::
 
     $ pip install ecs-pattern
 
 Guide
------
+========================================================================================================================
 
 .. code-block:: python
 
@@ -56,7 +57,8 @@ Guide
 * Store entities in entity manager - EntityManager
 * Manage your systems with SystemManager
 
-**Component**
+Component
+------------------------------------------------------------------------------------------------------------------------
     | Property with object data. Contains only data, no logic.
 
     | The component is used as a mixin in entities.
@@ -77,7 +79,8 @@ Guide
             name: str
             health: int
 
-**Entity**
+Entity
+------------------------------------------------------------------------------------------------------------------------
     | Container for properties. Consists of components only.
 
     | It is forbidden to add attributes to an entity dynamically.
@@ -96,7 +99,8 @@ Guide
         class Ball(ComPosition):
             pass
 
-**System**
+System
+------------------------------------------------------------------------------------------------------------------------
     | Entity processing logic.
 
     | Does not contain data about entities and components.
@@ -128,7 +132,8 @@ Guide
                     if entity_with_pos.y > 0:
                         entity_with_pos.y -= 1
 
-**EntityManager**
+EntityManager
+------------------------------------------------------------------------------------------------------------------------
     | Entity database.
 
     | A single point of access to all entities.
@@ -167,7 +172,8 @@ Guide
         entities.delete_buffer_purge()
         entities.delete(*tuple(entities.get_by_class(Ball)))  # one line del
 
-**SystemManager**
+SystemManager
+------------------------------------------------------------------------------------------------------------------------
     | Container for systems.
 
     | Works with systems in a given order.
@@ -199,11 +205,11 @@ Guide
         system_manager.stop_systems()
 
 Examples
---------
+========================================================================================================================
 * `Pong game: pygame + ecs_pattern <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong>`_.
 
 Advantages
-----------
+========================================================================================================================
 * Weak code cohesion - easy to refactor and expand the codebase
 * Modularity and testability of logic - easy to test and reuse code in other projects
 * Following the principles of the pattern prevents you from writing bad code
@@ -214,7 +220,7 @@ Advantages
 * Easy to work with clean data
 
 Difficulties
-------------
+========================================================================================================================
 It can take a lot of practice to learn how to cook ECS properly:
 
 * Data is available from anywhere - hard to find errors
@@ -222,7 +228,7 @@ It can take a lot of practice to learn how to cook ECS properly:
 * Recursive logic is not directly supported
 
 Newbie mistakes
----------------
+========================================================================================================================
 * Inheritance of components, entities, systems
 * Ignoring the principles of ECS, such as storing data in the system
 * Raising ECS to the absolute, no one cancels the OOP
@@ -231,7 +237,7 @@ Newbie mistakes
 * Using EntityManager.delete in get_by_class, get_with_component loops
 
 Good Practices
---------------
+========================================================================================================================
 * Use "Singleton" components with data and flags
 * Minimize component change locations
 * Do not create methods in components and entities
@@ -263,12 +269,12 @@ Project tree example:
     main.py
 
 Releases
---------
+========================================================================================================================
 
 History of important changes: `release_notes.rst <https://github.com/ikvk/ecs_pattern/blob/master/_docs/release_notes.rst>`_
 
 Help the project
-----------------
+========================================================================================================================
 * Found a bug or have a suggestion - issue / merge request 🎯
 * There is nothing to help this project with - help another open project that you are using ✋
 * Nowhere to put the money - spend it on family, friends, loved ones or people around you 💰
