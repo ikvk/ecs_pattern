@@ -214,8 +214,8 @@ Advantages
 * Modularity - the code is easy to test, analyze performance, and reuse
 * Execution control - systems work strictly one after another
 * Following the principles of the pattern helps to write quality code
-* Compact implementation
 * Convenient to parallelize processing
+* Compact implementation
 
 Difficulties
 ========================================================================================================================
