@@ -219,7 +219,7 @@ Advantages
 
 Difficulties
 ========================================================================================================================
-* It can take a lot of practice to learn how to cook ECS properly:
+* It can take a lot of practice to learn how to cook ECS properly
 * Data is available from anywhere - hard to find errors
 
 Newbie mistakes
