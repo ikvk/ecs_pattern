@@ -1,0 +1,7 @@
+
+pygame==2.5.0        # making multimedia apps like games built on top of the SDL library. C, Python, Native, OpenGL
+ecs-pattern==1.1.2   # Implementation of the ECS pattern for creating games.
+
+pip==23.2.1
+setuptools==68.0.0
+wheel==0.40.0
