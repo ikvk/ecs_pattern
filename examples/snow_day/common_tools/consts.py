@@ -28,7 +28,7 @@ else:  # WINDOW
     SCREEN_WIDTH = SCREEN_HEIGHT
 
 # сцена 1
-SHINE_SIZE = 0.25  # от высоты
+SHINE_SIZE = 0.38  # от высоты
 SHINE_WARM_SPEED_MUL = 10  # от высоты
 SNOWFLAKE_SIZE_FROM = 0.002  # от высоты
 SNOWFLAKE_SIZE_TO = 0.03  # от высоты
