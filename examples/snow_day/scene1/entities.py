@@ -6,8 +6,6 @@ from common_tools.components import ComSurface, ComSpeed, Com2dCoord, ComAnimati
 @entity
 class Scene1Info:
     do_play: bool  # Флаг продолжения основного цикла игры
-    wind_speed: float
-    wind_next_change_after: float  # изменить ветер после указанной секунды (monotonic)
 
 
 @entity

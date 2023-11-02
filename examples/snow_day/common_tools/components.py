@@ -1,4 +1,5 @@
 from typing import Tuple
+from dataclasses import field
 
 from pygame import Surface
 from ecs_pattern import component
@@ -28,6 +29,12 @@ class ComSpeed:
 class ComAnimationSet:
     """Набор поверхностей для анимации"""
     frames: Tuple[Surface]
+    frame_w: int = field(init=False)
+    frame_h: int = field(init=False)
+
+    def __post_init__(self):
+        self.frame_w = self.frames[0].get_width()
+        self.frame_h = self.frames[0].get_height()
 
 
 @component

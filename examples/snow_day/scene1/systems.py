@@ -1,6 +1,5 @@
 import math
 from sys import exit  # *for windows
-from time import monotonic
 from typing import Callable
 from random import choice, uniform
 
@@ -11,22 +10,22 @@ from pygame.event import Event
 from pygame.locals import QUIT, MOUSEBUTTONDOWN, MOUSEMOTION, KEYDOWN, K_ESCAPE
 from ecs_pattern import System, EntityManager
 
-from common_tools.consts import SCREEN_WIDTH, SCREEN_HEIGHT, SURFACE_ARGS, SHINE_SIZE, SNOWFLAKE_SIZE_FROM, \
+from common_tools.consts import SCREEN_WIDTH, SCREEN_HEIGHT, SHINE_SIZE, SNOWFLAKE_SIZE_FROM, \
     SNOWFLAKE_SIZE_TO, SNOWFLAKE_SIZE_CNT, FPS_MAX, SNOWFLAKE_SIZE_STEP, SNOWFLAKE_CNT, \
-    SNOWFLAKE_ANIMATION_FRAMES, SNOWFLAKE_ANIMATION_SPEED_MAX, SNOWFLAKE_ANIMATION_SPEED_MIN, \
-    SNOWFLAKE_SPEED_X_RANGE, SNOWFLAKE_SPEED_Y_RANGE, FPS_SHOW
-from common_tools.components import ComAnimationSet, ComAnimated, ComSpeed, Com2dCoord, ComSurface
+    SNOWFLAKE_ANIMATION_SPEED_MAX, SNOWFLAKE_ANIMATION_SPEED_MIN, \
+    SNOWFLAKE_SPEED_X_RANGE, SNOWFLAKE_SPEED_Y_RANGE, FPS_SHOW, SHINE_WARM_SPEED_MUL
+from common_tools.components import ComAnimated, ComSpeed, Com2dCoord, ComSurface
 from common_tools.resources import FONT_DEFAULT
 from .entities import Scene1Info, Background, Snowflake, Shine, SnowflakeAnimationSet
 from .surfaces import surface_background, surface_snowflake_animation_set, surface_shine
 
 
 def on_click_lmb(entities: EntityManager, pointer_pos: Vector2):  # noqa
-    next(entities.get_by_class(Scene1Info)).wind_speed += 3
+    print('L')
 
 
 def on_click_rmb(entities: EntityManager, pointer_pos: Vector2):  # noqa
-    next(entities.get_by_class(Scene1Info)).wind_speed -= 3
+    print('R')
 
 
 class SysInit(System):
@@ -62,8 +61,6 @@ class SysInit(System):
         self.entities.add(
             Scene1Info(
                 do_play=True,
-                wind_speed=0.0,
-                wind_next_change_after=0.0
             ),
             Background(
                 surface_background(), x=0.0, y=0.0
@@ -86,21 +83,24 @@ class SysLive(System):
         self.shine = next(self.entities.get_by_class(Shine))
 
     def update(self):
-        now_fps = self.clock.get_fps() or FPS_MAX
-
         # движение
+        now_fps = self.clock.get_fps() or FPS_MAX
         for speed_obj in self.entities.get_with_component(ComSpeed):
             speed_obj.x += speed_obj.speed_x / now_fps
             speed_obj.y += speed_obj.speed_y / now_fps
             if speed_obj.y > SCREEN_HEIGHT:
                 speed_obj.x = uniform(0, SCREEN_WIDTH)
-                speed_obj.y = 0 - speed_obj.animation_set.frames[0].get_height()
-            dist_to_shine = math.dist((speed_obj.x, speed_obj.y), (self.shine.x, self.shine.y))
+                speed_obj.y = 0 - speed_obj.animation_set.frame_h
+            dist_to_shine = math.dist(
+                (speed_obj.x + speed_obj.animation_set.frame_w, speed_obj.y + speed_obj.animation_set.frame_h),
+                (self.shine.x + self.half_shine_size, self.shine.y + self.half_shine_size)
+            )
             if dist_to_shine <= self.half_shine_size:
-                if abs(speed_obj.x - self.shine.x) < self.half_shine_size:
-                    speed_obj.x -= speed_obj.speed_x / now_fps * 5
-                else:
-                    speed_obj.x -= speed_obj.speed_x / now_fps * 5
+                speed_obj.x += speed_obj.speed_x / now_fps * SHINE_WARM_SPEED_MUL * (
+                    1 if abs(
+                        speed_obj.x + speed_obj.animation_set.frame_w - self.shine.x + self.half_shine_size
+                    ) < self.half_shine_size else -1
+                ) / (dist_to_shine * 0.01)
 
         # анимация
         for ani_obj in self.entities.get_with_component(ComAnimated):

@@ -34,21 +34,6 @@ def blit_rotated(surf: Surface, image: Surface, pos, origin_pos, angle: int, fil
     rect(surf, fill_color, (*rotated_image_rect.topleft, *rotated_image.get_size()), 2)
 
 
-def colorize_surface(surface: Surface, color: str) -> Surface:
-    colorized_surface = Surface(surface.get_size(), **SURFACE_ARGS)
-    colorized_surface.fill(Color(color))
-    res_surface = surface.copy()
-    res_surface.blit(colorized_surface, (0, 0), special_flags=BLEND_RGBA_MULT)
-    return res_surface
-
-
-def texture_onto_sf(texture: Surface, surface: Surface, special_flags: int) -> Surface:
-    """Масштабировать и наложить текстуру на поверхность"""
-    scaled_texture = scale(texture.convert_alpha(), surface.get_size())
-    surface.blit(scaled_texture, (0, 0), special_flags=special_flags)
-    return surface
-
-
 def text_surface(font_obj: Font, value: Any, color_main: str, color_shadow: Optional[str] = None,
                  shadow_shift: float = 0.03) -> Surface:
     """Создать поверхность с текстом"""
@@ -62,43 +47,6 @@ def text_surface(font_obj: Font, value: Any, color_main: str, color_shadow: Opti
     surface_res.blit(surface_shadow, (shadow_dx, shadow_dy))
     surface_res.blit(surface_main, (0, 0))
     return surface_res
-
-
-def text_ml_surface(font_obj: Font, ml_text: str, color: str, width: float, linesize_rate: float = 1.0) -> Surface:
-    """Создать поверхность с многострочным текстом"""
-    words_by_lines = [line.split(' ') for line in ml_text.splitlines()]
-    space_width = font_obj.size(' ')[0]
-    color_obj = Color(color)
-    font_line_height = font_obj.get_linesize() * linesize_rate
-
-    # get height
-    x, y = 0, 0
-    for line in words_by_lines:
-        for word in line:
-            word_width = font_obj.size(word)[0]
-            if x + word_width >= width:
-                x = 0
-                y += font_line_height
-            x += word_width + space_width
-        x = 0
-        y += font_line_height
-
-    # render
-    surface = Surface((width, y), **SURFACE_ARGS)
-    x, y = 0, 0
-    for line in words_by_lines:
-        for word in line:
-            word_surface = font_obj.render(word, True, color_obj)
-            word_width = word_surface.get_size()[0]
-            if x + word_width >= width:
-                x = 0
-                y += font_line_height
-            surface.blit(word_surface, (x, y))
-            x += word_width + space_width
-        x = 0
-        y += font_line_height
-
-    return surface
 
 
 def colored_block_surface(color: Union[Color, int, str], width: int, height: int):
