@@ -13,11 +13,6 @@ _desktop_max_h = max(height for width, height in _desktop_size_set)  # макс�
 _desktop_w, _desktop_h = next((w, h) for w, h in _desktop_size_set if h == _desktop_max_h)  # выбранный рабочий стол
 _is_horizontal_desktop = _desktop_h < _desktop_w
 
-# зависимость размеров от ориентации экрана
-if _is_horizontal_desktop:
-    _desktop_w = _desktop_h * 0.62
-    _desktop_h = _desktop_h
-
 # качество графики
 _quality_div = 1  # {SETTING_GRAPHIC_LOW: 3, SETTING_GRAPHIC_MIDDLE: 2, SETTING_GRAPHIC_HIGH: 1}
 _desktop_w = _desktop_w / _quality_div
@@ -25,27 +20,31 @@ _desktop_h = _desktop_h / _quality_div
 
 # зависимость размеров от режима экрана
 SETTING_SCREEN_IS_FULLSCREEN = False
-if not SETTING_SCREEN_IS_FULLSCREEN:
+if SETTING_SCREEN_IS_FULLSCREEN:
     SCREEN_WIDTH = _desktop_w  # ширина области для рендера в пикселях
     SCREEN_HEIGHT = _desktop_h  # высота области для рендера в пикселях
 else:  # WINDOW
-    SCREEN_HEIGHT = int(_desktop_h * 0.8 / 100) * 100
-    SCREEN_WIDTH = SCREEN_HEIGHT * 1
+    SCREEN_HEIGHT = _desktop_h * 0.8
+    SCREEN_WIDTH = SCREEN_HEIGHT
 
-# сцена
-SHINE_SIZE = 0.05  # от высоты
-SNOWFLAKE_SIZE_FROM = 0.005  # от высоты
-SNOWFLAKE_SIZE_TO = 0.08  # от высоты
-SNOWFLAKE_SIZE_CNT = 16
+# сцена 1
+SHINE_SIZE = 0.18  # от высоты
+SNOWFLAKE_SIZE_FROM = 0.002  # от высоты
+SNOWFLAKE_SIZE_TO = 0.03  # от высоты
+SNOWFLAKE_SIZE_CNT = 64
 SNOWFLAKE_SIZE_STEP = (SNOWFLAKE_SIZE_TO - SNOWFLAKE_SIZE_FROM) / SNOWFLAKE_SIZE_CNT
-SNOWFLAKE_CNT = 2000
+SNOWFLAKE_CNT = 15_000
 SNOWFLAKE_ANIMATION_FRAMES = 360  # кадров в полном обороте
 SNOWFLAKE_ANIMATION_SPEED_MIN = 2.0  # fps
-SNOWFLAKE_ANIMATION_SPEED_MAX = 20.0  # fps
-SNOWFLAKE_SPEED_X_RANGE = (-2.0, 2.0)
-SNOWFLAKE_SPEED_Y_RANGE = (10.0, 30.0)
+SNOWFLAKE_ANIMATION_SPEED_MAX = 40.0  # fps
+SNOWFLAKE_SPEED_X_RANGE = (-10.0, 10.0)
+SNOWFLAKE_SPEED_Y_RANGE = (15.0, 40.0)
+# todo wind + shine move
+WIND_SPEED_RANGE = (-40.0, 40.0)
+WIND_CHANGE_INTERVAL = 0.2
+WIND_CHANGE_MAX = 0.1
 
 # рендер
-FPS_MAX = 30
+FPS_MAX = 60
 FPS_SHOW = True
 SURFACE_ARGS = dict(flags=SRCALPHA, depth=32)

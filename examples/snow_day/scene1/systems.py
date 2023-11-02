@@ -1,20 +1,22 @@
+import math
 from sys import exit  # *for windows
 from time import monotonic
 from typing import Callable
 from random import choice, uniform
 
 import pygame
-from pygame import Surface
+from pygame import Surface, Color
 from pygame.math import Vector2
 from pygame.event import Event
-from pygame.locals import QUIT, MOUSEBUTTONDOWN, MOUSEMOTION
+from pygame.locals import QUIT, MOUSEBUTTONDOWN, MOUSEMOTION, KEYDOWN, K_ESCAPE
 from ecs_pattern import System, EntityManager
 
 from common_tools.consts import SCREEN_WIDTH, SCREEN_HEIGHT, SURFACE_ARGS, SHINE_SIZE, SNOWFLAKE_SIZE_FROM, \
     SNOWFLAKE_SIZE_TO, SNOWFLAKE_SIZE_CNT, FPS_MAX, SNOWFLAKE_SIZE_STEP, SNOWFLAKE_CNT, \
     SNOWFLAKE_ANIMATION_FRAMES, SNOWFLAKE_ANIMATION_SPEED_MAX, SNOWFLAKE_ANIMATION_SPEED_MIN, \
-    SNOWFLAKE_SPEED_X_RANGE, SNOWFLAKE_SPEED_Y_RANGE
+    SNOWFLAKE_SPEED_X_RANGE, SNOWFLAKE_SPEED_Y_RANGE, FPS_SHOW
 from common_tools.components import ComAnimationSet, ComAnimated, ComSpeed, Com2dCoord, ComSurface
+from common_tools.resources import FONT_DEFAULT
 from .entities import Scene1Info, Background, Snowflake, Shine, SnowflakeAnimationSet
 from .surfaces import surface_background, surface_snowflake_animation_set, surface_shine
 
@@ -34,11 +36,11 @@ class SysInit(System):
 
     def start(self):
         snowflake_animation_set_collection = []
-        snowflake_alpha_step = 255 / SNOWFLAKE_SIZE_CNT * 0.9
+        snowflake_alpha_step = 255 / SNOWFLAKE_SIZE_CNT * 0.99
         for i, scale_rate in enumerate(range(SNOWFLAKE_SIZE_CNT)):
             snowflake_animation_set_collection.append(surface_snowflake_animation_set(
                 snowflake_scale=SNOWFLAKE_SIZE_FROM + scale_rate * SNOWFLAKE_SIZE_STEP,
-                snowflake_alpha=int(i * snowflake_alpha_step),
+                snowflake_alpha=255 - int(i * snowflake_alpha_step),
                 reverse=choice((True, False))
             ))
 
@@ -46,7 +48,7 @@ class SysInit(System):
             self.entities.add(
                 Snowflake(
                     x=uniform(0, SCREEN_WIDTH),
-                    y=uniform(0, SCREEN_HEIGHT),
+                    y=uniform(0, SCREEN_HEIGHT) - SCREEN_HEIGHT * SNOWFLAKE_SIZE_TO,
                     speed_x=uniform(*SNOWFLAKE_SPEED_X_RANGE),
                     speed_y=uniform(*SNOWFLAKE_SPEED_Y_RANGE),
                     animation_set=SnowflakeAnimationSet(choice(snowflake_animation_set_collection)),
@@ -77,6 +79,11 @@ class SysLive(System):
     def __init__(self, entities: EntityManager, clock: pygame.time.Clock):
         self.entities = entities
         self.clock = clock
+        self.half_shine_size = SCREEN_HEIGHT * SHINE_SIZE / 2
+        self.shine = None
+
+    def start(self):
+        self.shine = next(self.entities.get_by_class(Shine))
 
     def update(self):
         now_fps = self.clock.get_fps() or FPS_MAX
@@ -88,6 +95,12 @@ class SysLive(System):
             if speed_obj.y > SCREEN_HEIGHT:
                 speed_obj.x = uniform(0, SCREEN_WIDTH)
                 speed_obj.y = 0 - speed_obj.animation_set.frames[0].get_height()
+            dist_to_shine = math.dist((speed_obj.x, speed_obj.y), (self.shine.x, self.shine.y))
+            if dist_to_shine <= self.half_shine_size:
+                if abs(speed_obj.x - self.shine.x) < self.half_shine_size:
+                    speed_obj.x -= speed_obj.speed_x / now_fps * 5
+                else:
+                    speed_obj.x -= speed_obj.speed_x / now_fps * 5
 
         # анимация
         for ani_obj in self.entities.get_with_component(ComAnimated):
@@ -116,8 +129,8 @@ class SysControl(System):
 
             if event_type == MOUSEMOTION:
                 shine_obj = next(self.entities.get_by_class(Shine))
-                shine_obj.x = event.pos[0]
-                shine_obj.y = event.pos[1]
+                shine_obj.x = event.pos[0] - SCREEN_HEIGHT * SHINE_SIZE / 2
+                shine_obj.y = event.pos[1] - SCREEN_HEIGHT * SHINE_SIZE / 2
             if event_type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     on_click_lmb(self.entities, event.pos)
@@ -125,15 +138,16 @@ class SysControl(System):
                     on_click_rmb(self.entities, event.pos)
 
             # выйти из игры
-            if event_type == QUIT:
+            if event_type == QUIT or event_type == KEYDOWN and event_key == K_ESCAPE:
                 exit()
 
 
 class SysDraw(System):
 
-    def __init__(self, entities: EntityManager, display: Surface):
+    def __init__(self, entities: EntityManager, display: Surface, clock: pygame.time.Clock):
         self.entities = entities
         self.display = display
+        self.clock = clock
 
     def update(self):
         # static
@@ -142,3 +156,9 @@ class SysDraw(System):
         # animated
         for ani_w_pos in self.entities.get_with_component(Com2dCoord, ComAnimated):
             self.display.blit(ani_w_pos.animation_set.frames[ani_w_pos.animation_frame], (ani_w_pos.x, ani_w_pos.y))
+        # fps
+        if FPS_SHOW:
+            self.display.blit(
+                FONT_DEFAULT.render(f'FPS: {int(self.clock.get_fps())}', True, Color('#1339AC')),
+                (0, SCREEN_HEIGHT * 0.98)
+            )
