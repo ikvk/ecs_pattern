@@ -1,7 +1,7 @@
 .. http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
-Pong game
-=========
+Pong - classic game
+========================================================================================================================
 
 Classic game, implemented on pygame + ecs_pattern
 
