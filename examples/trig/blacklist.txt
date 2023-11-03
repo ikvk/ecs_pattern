@@ -1,0 +1,7 @@
+# file containing blacklisted patterns that will be excluded from the final APK.
+^*.git/*
+^*.idea/*
+^*_docs/*
+^*_test_app/*
+^*bash/*
+^*old_bricks/*
