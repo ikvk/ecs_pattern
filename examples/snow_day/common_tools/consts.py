@@ -14,9 +14,9 @@ _desktop_w, _desktop_h = next((w, h) for w, h in _desktop_size_set if h == _desk
 _is_horizontal_desktop = _desktop_h < _desktop_w
 
 # качество графики
-_quality_div = 1  # {SETTING_GRAPHIC_LOW: 3, SETTING_GRAPHIC_MIDDLE: 2, SETTING_GRAPHIC_HIGH: 1}
-_desktop_w = _desktop_w / _quality_div
-_desktop_h = _desktop_h / _quality_div
+_graphics_quality_div = 2  # {SETTING_GRAPHIC_LOW: 3, SETTING_GRAPHIC_MIDDLE: 2, SETTING_GRAPHIC_HIGH: 1}
+_desktop_w = _desktop_w / _graphics_quality_div
+_desktop_h = _desktop_h / _graphics_quality_div
 
 # зависимость размеров от режима экрана
 SETTING_SCREEN_IS_FULLSCREEN = False
