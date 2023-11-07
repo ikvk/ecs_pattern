@@ -206,7 +206,7 @@ SystemManager
 ========================================================================================================================
 * `Pong <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong>`_: игра - pygame + ecs_pattern
 * `Snow day <https://github.com/ikvk/ecs_pattern/tree/master/examples/snow_day>`_: сцена - pygame + ecs_pattern
-* `Trig fall <https://github.com/ikvk/ecs_pattern/tree/master/examples/trig>`_: игра - pygame + ecs_pattern + numpy
+* `Trig fall <https://github.com/ikvk/ecs_pattern/tree/master/examples/trig>`_: коммерческая игра - pygame + ecs_pattern + numpy
 
 Преимущества
 ========================================================================================================================
