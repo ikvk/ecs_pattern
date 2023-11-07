@@ -4,3 +4,7 @@ search for places to optimize
     ...пробовать удалять раз в интервал, или пачку?
 
 multiproc phys example
+
+storing components as
+dict(Component: [comp1, comp2])
+and using weakref_slot in dataclasses?

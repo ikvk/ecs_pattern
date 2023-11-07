@@ -7,7 +7,7 @@ Scene with snowflakes and warm shine, implemented on pygame + ecs_pattern
 
 I will be happy to hear about a simple significant optimization.
 
-Example gif size is 10MB, wait for load it :D
+Size of example gif is 10MB, wait for load it :D
 
 gif:
 

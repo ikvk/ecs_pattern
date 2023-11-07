@@ -204,9 +204,9 @@ SystemManager
 
 Examples
 ========================================================================================================================
-* `Pong <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong>`_: game - pygame + ecs_pattern
-* `Snow day <https://github.com/ikvk/ecs_pattern/tree/master/examples/snow_day>`_: scene - pygame + ecs_pattern
-* `Trig fall <https://github.com/ikvk/ecs_pattern/tree/master/examples/trig>`_: commercial game - pygame + ecs_pattern + numpy
+* `Pong <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong#pong---classic-game>`_: game - pygame + ecs_pattern
+* `Snow day <https://github.com/ikvk/ecs_pattern/tree/master/examples/snow_day#snow-day---scene>`_: scene - pygame + ecs_pattern
+* `Trig fall <https://github.com/ikvk/ecs_pattern/tree/master/examples/trig#trig-fall---game>`_: commercial game - pygame + ecs_pattern + numpy
 
 Advantages
 ========================================================================================================================
