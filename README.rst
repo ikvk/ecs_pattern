@@ -8,7 +8,7 @@ Implementation of the ECS pattern (Entity Component System) for creating games.
 
 Make a game instead of architecture for a game.
 
-`Документация на Русском <https://github.com/ikvk/ecs_pattern/blob/master/_docs/README_RUS.rst>`_.
+`Документация на Русском <https://github.com/ikvk/ecs_pattern/blob/master/_docs/README_RUS.rst#ecs_pattern->`_.
 
 .. image:: https://img.shields.io/pypi/dm/ecs_pattern.svg?style=social
 

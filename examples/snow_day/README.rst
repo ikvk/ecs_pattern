@@ -7,4 +7,8 @@ Scene with snowflakes and warm shine, implemented on pygame + ecs_pattern
 
 I will be happy to hear about a simple significant optimization.
 
+Example gif size is 10MB, wait for load it :D
+
+gif:
+
 .. image:: https://github.com/ikvk/ecs_pattern/blob/master/examples/snow_day/_img/demo.gif
