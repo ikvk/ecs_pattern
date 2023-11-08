@@ -1,10 +1,10 @@
 from typing import Any, Optional, Union
 
-from pygame.transform import rotate, scale
+from pygame.transform import rotate
 from pygame.draw import rect
 from pygame.math import Vector2
 from pygame.font import Font
-from pygame import Color, Surface, BLEND_RGBA_MULT
+from pygame import Color, Surface
 
 from .consts import SURFACE_ARGS
 
