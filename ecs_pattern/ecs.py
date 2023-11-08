@@ -19,7 +19,7 @@ class EntityManager:
 
     def __init__(self):
         self._entity_map = {}  # Person: [ent1, ent2]
-        self._entity_components_map = {}  # Person: (MoveCom, DamageCom, NameCom)
+        self._entity_components_map = {}  # Person: {MoveCom, DamageCom, NameCom}
         self._set_cache_map = {}  # (MoveCom, DamageCom, NameCom): {MoveCom, DamageCom, NameCom}
         self._delete_entity_buffer = deque()  # deque([Person1, Person2])
 
@@ -30,10 +30,8 @@ class EntityManager:
             entity_value_class = entity_value.__class__
             self._entity_map.setdefault(entity_value_class, []).append(entity_value)
             if entity_value_class not in self._entity_components_map:
-                self._entity_components_map[entity_value_class] = tuple(sorted(
-                    (i for i in entity_value_class.__mro__ if i is not object),
-                    key=lambda x: x.__class__.__name__
-                ))
+                self._entity_components_map[entity_value_class] = \
+                    {i for i in entity_value_class.__mro__ if i is not object}
 
     def delete(self, *entity_value_list: Any):
         """Delete entities from world"""
@@ -75,11 +73,9 @@ class EntityManager:
         Sometimes it will be useful to warm up the cache
         raise KeyError for uninitialized (never added) entities
         """
-        for entity_class, entity_component_list in self._entity_components_map.items():
-            entity_component_set = \
-                self._set_cache_map.setdefault(entity_component_list, set(entity_component_list))
-            component_class_val_set = \
-                self._set_cache_map.setdefault(component_class_val_list, set(component_class_val_list))
+        component_class_val_set = \
+            self._set_cache_map.setdefault(component_class_val_list, set(component_class_val_list))
+        for entity_class, entity_component_set in self._entity_components_map.items():
             if component_class_val_set.issubset(entity_component_set):
                 yield from self._entity_map[entity_class]
 

@@ -1,3 +1,7 @@
+1.2.0
+=====
+* EntityManager.get_with_component optimization
+
 1.1.3
 =====
 * Update docs

@@ -106,6 +106,7 @@ class EcsTest(unittest.TestCase):
         self.assertEqual(len(list(entities.get_with_component(ComPosition))), 3)
         self.assertEqual(len(list(entities.get_with_component(ComPerson))), 2)
         self.assertEqual(len(list(entities.get_with_component(ComPerson, ComPosition))), 2)  # *and
+        self.assertEqual(len(list(entities.get_with_component(ComPerson, ComPerson, ComPerson))), 2)  # *not uniq coms
 
         entities.delete(player1, player2)
         self.assertEqual(len(list(entities.get_by_class(Player))), 0)
