@@ -223,8 +223,57 @@ def entity_dataclass_slots():
         _add_10_entities(entities)
 
 
+def lib_dataclass_mem():
+    """
+    8_000_000
+        Maximum memory usage for lib_dataclass_mem: 3250.58984375 Mb
+    2_000_000
+        Maximum memory usage for lib_dataclass_mem: 830.5625 Mb
+    200_000
+        Maximum memory usage for lib_dataclass_mem: 126.40625 Mb
+    """
+    from dataclasses import dataclass, field
+    cnt = 8_000_000
+
+    @dataclass
+    class Class1:
+        number: int = 42
+        list_of_numbers: list = field(default_factory=list)
+        string: str = ''
+
+    data = []
+    for i in range(cnt):
+        data.append(Class1(i, [1, 2, 3], str(i) * 5))
+
+
+def lib_attrs_mem():
+    """
+    8_000_000
+        Maximum memory usage for lib_attrs_mem: 2552.12890625 Mb
+    2_000_000
+        Maximum memory usage for lib_attrs_mem: 643.125 Mb
+    200_000
+        Maximum memory usage for lib_attrs_mem: 103.33203125 Mb
+    """
+    from attrs import define, Factory
+    cnt = 8_000_000
+
+    @define
+    class Class1:
+        number: int = 42
+        list_of_numbers: list[int] = Factory(list)
+        string: str = ''
+
+    data = []
+    for i in range(cnt):
+        data.append(Class1(i, [1, 2, 3], str(i) * 5))
+
+
 if __name__ == '__main__':
     # show_memory_usage(entity_manager_access)
     # show_memory_usage(entity_manager_delete_buffer)
     # show_memory_usage(entity_dataclass_slots)
+    # show_memory_usage(lib_dataclass_mem)
+    # show_memory_usage(lib_attrs_mem)
+
     pass
