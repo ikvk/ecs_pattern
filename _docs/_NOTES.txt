@@ -7,3 +7,6 @@ multiproc phys example
 weakref и weakref_slot в dataclasses не подходят - после удаления объект доступен по слабой ссылке до сборки мусора
 
 https://github.com/python-attrs/attrs
+
+multiproc EntityManager + SystemManager auto get data part by proc uid
+https://stackoverflow.com/questions/10190981/get-a-unique-id-for-worker-in-python-multiprocessing-pool
