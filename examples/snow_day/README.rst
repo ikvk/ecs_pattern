@@ -5,6 +5,8 @@ Snow day - scene
 
 Scene with snowflakes and warm shine, implemented on pygame + ecs_pattern
 
+At scene: 10 000 snowflakes with different transparent that rotating with different speed.
+
 I will be happy to hear about a simple significant optimization.
 
 Size of example gif is 10MB, wait for load it :D
