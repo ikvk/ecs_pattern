@@ -11,3 +11,6 @@ https://github.com/python-attrs/attrs
 диаграмма Вороного
 
 Physarum или Slime Mold Simulation.
+
+multiproc EntityManager + SystemManager auto get data part by proc uid
+https://stackoverflow.com/questions/10190981/get-a-unique-id-for-worker-in-python-multiprocessing-pool
