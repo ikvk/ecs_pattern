@@ -12,12 +12,13 @@ Make a game instead of architecture for a game.
 
 .. image:: https://img.shields.io/pypi/dm/ecs_pattern.svg?style=social
 
-===============  ==========================================
+===============  ====================================================================================
 Python version   3.3+
 License          Apache-2.0
 PyPI             https://pypi.python.org/pypi/ecs_pattern/
 Dependencies     dataclasses before 3.7, typing before 3.5
-===============  ==========================================
+Repo mirror      https://gitflic.ru/project/ikvk/ecs-pattern
+===============  ====================================================================================
 
 .. contents::
 
