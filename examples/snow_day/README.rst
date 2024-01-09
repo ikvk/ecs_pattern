@@ -5,7 +5,7 @@ Snow day - scene
 
 Scene with snowflakes and warm shine, implemented on pygame + ecs_pattern
 
-At scene: 10 000 snowflakes with different transparent that rotating with different speed.
+At scene: 10 000 snowflakes with different: transparency, rotation speed, movement speed.
 
 I will be happy to hear about a simple significant optimization.
 
