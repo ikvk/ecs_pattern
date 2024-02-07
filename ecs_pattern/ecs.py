@@ -8,6 +8,7 @@ from functools import partial
 from collections import deque
 
 # all component classes must be decorated with this function
+# 3 class with @dataclass(slots=True) - A, B, C, then C(A, B): TypeError: multiple bases have instance lay-out conflict
 component = dataclass
 
 # all entity classes must be decorated with this function
