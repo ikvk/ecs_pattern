@@ -148,6 +148,8 @@ class SysDraw(System):
         self.entities = entities
         self.display = display
         self.clock = clock
+        self._fps_pos = (0, SCREEN_HEIGHT * 0.98)
+        self._fps_color = Color('#1339AC')
 
     def update(self):
         # static
@@ -159,6 +161,6 @@ class SysDraw(System):
         # fps
         if FPS_SHOW:
             self.display.blit(
-                FONT_DEFAULT.render(f'FPS: {int(self.clock.get_fps())}', True, Color('#1339AC')),
-                (0, SCREEN_HEIGHT * 0.98)
+                FONT_DEFAULT.render(f'FPS: {int(self.clock.get_fps())}', True, self._fps_color),
+                self._fps_pos
             )
