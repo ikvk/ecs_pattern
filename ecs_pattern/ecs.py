@@ -21,6 +21,7 @@ class EntityManager:
     def __init__(self):
         self._entity_map = {}  # Person: [ent1, ent2]
         self._entity_components_map = {}  # Person: {MoveCom, DamageCom, NameCom}
+        # *needed for set().issubset()
         self._set_cache_map = {}  # (MoveCom, DamageCom, NameCom): {MoveCom, DamageCom, NameCom}
         self._delete_entity_buffer = deque()  # deque([Person1, Person2])
 
