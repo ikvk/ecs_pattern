@@ -6,7 +6,7 @@ multiproc phys example
 
 weakref и weakref_slot в dataclasses не подходят - после удаления объект доступен по слабой ссылке до сборки мусора
 
-https://github.com/python-attrs/attrs
+https://github.com/python-attrs/attrs - выгода минимальна
 
 диаграмма Вороного
 
