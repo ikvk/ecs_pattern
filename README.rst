@@ -108,6 +108,14 @@ System
 
     | Use the ecs_pattern.System abstract class to create concrete systems:
 
+    | *system.start* - Initialize the system. It is called once before the main system update cycle.
+
+    | *system.update* - Update the system status. Called in the main loop.
+
+    | *system.stop* - Stops the system. It is called once after the completion of the main loop.
+
+    | Use SystemManager to manage systems.
+
     .. code-block:: python
 
         class SysInit(System):
