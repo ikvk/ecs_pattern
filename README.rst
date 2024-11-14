@@ -62,11 +62,11 @@ Component
 ------------------------------------------------------------------------------------------------------------------------
     | Property with object data. Contains only data, no logic.
 
-    | The component is used as a mixin in entities.
-
     | Use the ecs_pattern.component decorator to create components.
 
     | Technically this is python dataclass.
+
+    | Use components as mixins for entities.
 
     .. code-block:: python
 
@@ -89,6 +89,8 @@ Entity
     | Use the ecs_pattern.entity decorator to create entities.
 
     | Technically this is python dataclass with slots=True.
+
+    | Use EntityManager to store entities.
 
     .. code-block:: python
 
