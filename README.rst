@@ -147,7 +147,7 @@ EntityManager
 ------------------------------------------------------------------------------------------------------------------------
     | Container for entities.
 
-    | Use the ecs_pattern class.EntityManager for creating an entity manager.
+    | Use class ecs_pattern.EntityManager for creating an entity manager.
 
     | Time complexity of get_by_class and get_with_component - like a dict
 
