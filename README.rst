@@ -48,6 +48,8 @@ Installation
 Guide
 ========================================================================================================================
 
+The library provides you with 5 tools:
+
 .. code-block:: python
 
     from ecs_pattern import component, entity, EntityManager, System, SystemManager

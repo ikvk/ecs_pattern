@@ -47,6 +47,8 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 Руководство
 ========================================================================================================================
 
+Библиотека предоставляет вам 5 инструментов:
+
 .. code-block:: python
 
     from ecs_pattern import component, entity, EntityManager, System, SystemManager
