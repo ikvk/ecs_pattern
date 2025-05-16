@@ -18,6 +18,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=['tests']),
     url='https://github.com/ikvk/ecs_pattern',
     license='Apache-2.0',
+    license_files="LICENSE",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     author='Vladimir Kaukin',

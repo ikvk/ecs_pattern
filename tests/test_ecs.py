@@ -121,10 +121,21 @@ class EcsTest(unittest.TestCase):
         self.assertEqual(len(list(entities.get_with_component(ComPosition))), 0)
         self.assertEqual(len(list(entities.get_with_component(ComPerson))), 0)
 
+        # mark to del
         entities.add(player1, player2)
         self.assertEqual(len(list(entities.get_by_class(Player))), 2)
         entities.delete_buffer_purge()
         self.assertEqual(len(list(entities.get_by_class(Player))), 2)
+        entities.delete_buffer_add(player1, player2)
+        entities.delete_buffer_purge()
+        self.assertEqual(len(list(entities.get_by_class(Player))), 0)
+
+        # mark to del twice
+        entities.add(player1, player2)
+        self.assertEqual(len(list(entities.get_by_class(Player))), 2)
+        entities.delete_buffer_purge()
+        self.assertEqual(len(list(entities.get_by_class(Player))), 2)
+        entities.delete_buffer_add(player1, player2)
         entities.delete_buffer_add(player1, player2)
         entities.delete_buffer_purge()
         self.assertEqual(len(list(entities.get_by_class(Player))), 0)

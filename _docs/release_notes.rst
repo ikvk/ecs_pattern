@@ -1,3 +1,7 @@
+1.3.0
+=====
+* delete_buffer_purge,delete_buffer_add - allowed to mark the object for deletion more than 1 time
+
 1.2.0
 =====
 * EntityManager.get_with_component optimization

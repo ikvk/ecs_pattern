@@ -48,7 +48,11 @@ class EntityManager:
     def delete_buffer_purge(self):
         """Delete all entities from delete buffer"""
         for delete_entity in self._delete_entity_buffer:
-            self.delete(delete_entity)
+            try:
+                self.delete(delete_entity)
+            except ValueError:
+                # the object has been marked for deletion more than 1 time.
+                pass
         self._delete_entity_buffer.clear()
 
     def init(self, *entity_list: Any):
