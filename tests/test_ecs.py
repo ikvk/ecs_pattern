@@ -1,4 +1,5 @@
 import unittest
+from time import monotonic
 
 from ecs_pattern import component, entity, EntityManager, System, SystemManager
 
@@ -42,6 +43,27 @@ class SysGravitation(System):
 
     def stop(self):
         self._gravitation_enabled = False
+
+
+class SysInit(System):
+    def __init__(self, entities: EntityManager):
+        self.entities = entities
+        self.some_init_data = None
+
+    def start(self):
+        self.some_init_data = 123
+
+    def stop(self):
+        self.some_init_data = None
+
+
+class SysLive(System):
+    def __init__(self, entities: EntityManager):
+        self.entities = entities
+        self.live_data = None
+
+    def update(self):
+        self.live_data = monotonic() % 2
 
 
 class SysPersonHealthRegeneration(System):
@@ -171,7 +193,9 @@ class EcsTest(unittest.TestCase):
         entities.add(player1, player2, ball)
         sys_regen = SysPersonHealthRegeneration(entities)
         sys_grav = SysGravitation(entities)
-        system_manager = SystemManager([sys_regen, sys_grav])
+        sys_init = SysInit(entities)
+        sys_live = SysLive(entities)
+        system_manager = SystemManager([sys_regen, sys_grav, sys_init, sys_live])
         per: ComPerson
         pos: ComPosition
 
@@ -197,6 +221,23 @@ class EcsTest(unittest.TestCase):
         system_manager.update_systems()
         self.assertEqual(set(per.health for per in entities.get_with_component(ComPerson)), {23, 33})
         self.assertEqual(set(pos.y for pos in entities.get_with_component(ComPosition)), {0, 1, 4})
+
+        self.assertEqual(len(system_manager._system_with_start_list), 3)
+        self.assertEqual(len(system_manager._system_with_update_list), 3)
+        self.assertEqual(len(system_manager._system_with_stop_list), 3)
+
+        self.assertEqual(
+            {SysPersonHealthRegeneration, SysGravitation, SysInit},
+            set(i.__class__ for i in system_manager._system_with_start_list)
+        )
+        self.assertEqual(
+            {SysPersonHealthRegeneration, SysGravitation, SysLive},
+            set(i.__class__ for i in system_manager._system_with_update_list)
+        )
+        self.assertEqual(
+            {SysPersonHealthRegeneration, SysGravitation, SysInit},
+            set(i.__class__ for i in system_manager._system_with_stop_list)
+        )
 
 
 if __name__ == "__main__":

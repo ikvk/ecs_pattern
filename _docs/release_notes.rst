@@ -1,3 +1,7 @@
+1.4.0
+=====
+* Fixed: SystemManager call optimization for (start, update, stop) now works correctly.
+
 1.3.0
 =====
 * delete_buffer_purge,delete_buffer_add - allowed to mark the object for deletion more than 1 time

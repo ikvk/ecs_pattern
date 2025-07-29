@@ -111,6 +111,10 @@ class System:
         Runs by SystemManager.stop_systems
         """
 
+    start._implemented = False
+    update._implemented = False
+    stop._implemented = False
+
 
 class SystemManager:
     """System manager"""
@@ -120,9 +124,9 @@ class SystemManager:
         system_list: Ordered sequence with systems
         """
         self._system_list = tuple(system_list)
-        self._system_with_start_list = tuple(i for i in self._system_list if hasattr(i, 'start'))
-        self._system_with_update_list = tuple(i for i in self._system_list if hasattr(i, 'update'))
-        self._system_with_stop_list = tuple(i for i in self._system_list if hasattr(i, 'stop'))
+        self._system_with_start_list = tuple(i for i in self._system_list if getattr(i.start, '_implemented', True))
+        self._system_with_update_list = tuple(i for i in self._system_list if getattr(i.update, '_implemented', True))
+        self._system_with_stop_list = tuple(i for i in self._system_list if getattr(i.stop, '_implemented', True))
 
     def start_systems(self):
         """Start all systems"""
