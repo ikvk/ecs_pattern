@@ -1,4 +1,5 @@
-from numpy import ndarray, array, vstack, insert, delete, sum as np_sum, ndindex
+from numpy import array, delete, insert, ndarray, ndindex, vstack
+from numpy import sum as np_sum
 
 
 def m_create(row_cnt: int = None, col_cnt: int = None, *, data=None) -> ndarray:
@@ -6,11 +7,13 @@ def m_create(row_cnt: int = None, col_cnt: int = None, *, data=None) -> ndarray:
     Создать матрицу
     (row_cnt, col_cnt) | data
     """
-    assert bool(row_cnt and col_cnt) ^ bool(data), 'set matrix Dimension or Data'
+    if not (bool(row_cnt and col_cnt) ^ bool(data)):
+        raise ValueError('set matrix Dimension or Data')
     if data:
         return array(data)
     else:
-        assert row_cnt and col_cnt, 'row_cnt and col_cnt params expected'
+        if not (row_cnt and col_cnt):
+            raise ValueError('row_cnt and col_cnt params expected')
         matrix = ndarray(shape=(row_cnt, col_cnt), dtype=int)
         matrix.fill(0)
         return matrix
@@ -23,7 +26,8 @@ def m_intersects(matrix1: ndarray, matrix2: ndarray) -> bool:
 
 def m_expand(matrix: ndarray, top=0, bottom=0, left=0, right=0, _filler=0) -> ndarray:
     """Добавить строки и колонки по краям матрицы"""
-    assert top >= 0 and bottom >= 0 and left >= 0 and right >= 0
+    if not (top >= 0 and bottom >= 0 and left >= 0 and right >= 0):
+        raise ValueError
     new_matrix = matrix.copy()
     # rows
     col_cnt = new_matrix.shape[1]
@@ -42,14 +46,16 @@ def m_expand(matrix: ndarray, top=0, bottom=0, left=0, right=0, _filler=0) -> nd
 
 def m_trim(matrix: ndarray, top=0, bottom=0, left=0, right=0) -> ndarray:
     """Удалить строки и колонки по краям матрицы"""
-    assert top >= 0 and bottom >= 0 and left >= 0 and right >= 0
+    if not (top >= 0 and bottom >= 0 and left >= 0 and right >= 0):
+        raise ValueError
     row_cnt, col_cnt = matrix.shape
     return matrix[top:row_cnt - bottom, left:col_cnt - right]
 
 
 def m_is_sum_equals(matrix1: ndarray, matrix2: ndarray) -> bool:
     """Равны ли суммы элементов матриц"""
-    assert matrix1.shape == matrix2.shape, 'Different matrix shapes'
+    if matrix1.shape != matrix2.shape:
+        raise ValueError('Different matrix shapes')
     return np_sum(matrix1) == np_sum(matrix2)
 
 
@@ -68,9 +74,28 @@ def m_indexes(matrix: ndarray) -> iter:
     return ndindex(matrix.shape)  # noqa
 
 
-def m_2d_move_in_place(matrix: ndarray, row_num: int, col_num: int, x: int = 0, y: int = 0, filler: int = 0) -> None:
+def m_2d_move(matrix: ndarray, x: int = 0, y: int = 0) -> ndarray:
+    """Создать новую матрицу, сдвинутую в двухмерной плоскости"""
+    if not (x or y):
+        raise ValueError
+    if x > 0:
+        # вправо
+        matrix = m_expand(m_trim(matrix, right=x), left=x)
+    else:
+        # влево
+        matrix = m_expand(m_trim(matrix, left=abs(x)), right=abs(x))
+    if y > 0:
+        # вверх
+        matrix = m_expand(m_trim(matrix, top=y), bottom=y)
+    else:
+        # вниз
+        matrix = m_expand(m_trim(matrix, bottom=abs(y)), top=abs(y))
+    return matrix
+
+
+def _m_2d_move_in_place(matrix: ndarray, row_num: int, col_num: int, x: int = 0, y: int = 0, filler: int = 0) -> None:
     """
-    *МЕДЛЕННЫЙ вариант
+    *МЕДЛЕННЫЙ вариант, не используется
     Сдвинуть данные заданной матрицы в двухмерной плоскости
     """
     # вправо
@@ -97,21 +122,3 @@ def m_2d_move_in_place(matrix: ndarray, row_num: int, col_num: int, x: int = 0, 
             for row in range(row_num - 1, -1, -1):
                 row_src = row - abs(y)
                 matrix[row, col] = matrix[row_src, col] if row_src >= 0 else filler
-
-
-def m_2d_move(matrix: ndarray, x: int = 0, y: int = 0) -> ndarray:
-    """Создать новую матрицу, сдвинутую в двухмерной плоскости"""
-    assert x or y
-    if x > 0:
-        # вправо
-        matrix = m_expand(m_trim(matrix, right=x), left=x)
-    else:
-        # влево
-        matrix = m_expand(m_trim(matrix, left=abs(x)), right=abs(x))
-    if y > 0:
-        # вверх
-        matrix = m_expand(m_trim(matrix, top=y), bottom=y)
-    else:
-        # вниз
-        matrix = m_expand(m_trim(matrix, bottom=abs(y)), top=abs(y))
-    return matrix

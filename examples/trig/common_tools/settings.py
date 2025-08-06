@@ -1,8 +1,9 @@
-import os
-import datetime
 import configparser
-import warnings
+import datetime
 import locale
+import os
+import sys
+import warnings
 
 SETTING_GRAPHIC_LOW = 'l'
 SETTING_GRAPHIC_MIDDLE = 'm'
@@ -56,13 +57,20 @@ class SettingsStorage:
         if self._config_section not in self.config:
             self.config[self._config_section] = {}
 
-        locale_lang_code, locale_encoding = locale.getlocale()
-        locale_lang_code = (locale_lang_code or '').lower()
+        # VK Play
+        # GameUILocaleParam=-my_ui_locale_arg=
+        # При старте игры будет передано -my_ui_locale_arg=XXXX,
+        # где XXXX ru-RU, en-US, de-DE, es-ES, fr-FR, it-IT, pl-PL, tr-TR, zh-CN, ko-KR, ja-JP).
+        vk_play_locale_lang_code = \
+            next((i.replace('-my_ui_locale_arg=', '') for i in sys.argv if '-my_ui_locale_arg' in i), '')  # works
+
+        locale_lang_code, locale_encoding = locale.getlocale()  # после pyinstaller exe = (None, None)
+        locale_lang_code = (locale_lang_code or vk_play_locale_lang_code).lower()
         ru_by_default = 'russia' in locale_lang_code or locale_lang_code in ('ru', 'ru_ru', 'ru-ru')
         self.defaults = {
             self._key_graphic: SETTING_GRAPHIC_MIDDLE if self.is_android else SETTING_GRAPHIC_HIGH,
             self._key_sound: SETTING_SOUND_NORMAL,
-            self._key_screen_mode: SETTING_SCREEN_MODE_FULL if self.is_android else SETTING_SCREEN_MODE_WINDOW,
+            self._key_screen_mode: SETTING_SCREEN_MODE_FULL,  # if self.is_android else SETTING_SCREEN_MODE_WINDOW, *VK
             self._key_language: SETTING_LANGUAGE_RU if ru_by_default else SETTING_LANGUAGE_EN,
             self._key_player_name: 'Player',
             self._key_records: '',
@@ -76,7 +84,8 @@ class SettingsStorage:
         has_valid_keys = self._valid_keys[key]
         if has_valid_keys and res and res not in self._valid_keys[key]:
             warnings.warn(
-                f'SettingsStorage invalid value: "{res}" for key: "{key}" at "{self.config_file_path}" (fixed)')
+                f'SettingsStorage invalid value: "{res}" for key: "{key}" at "{self.config_file_path}" (fixed)',
+                stacklevel=2)
             self._write(key, self.defaults[key])
             return self.defaults[key]
         return res
@@ -84,7 +93,8 @@ class SettingsStorage:
     def _write(self, key: str, value: str):
         has_valid_keys = self._valid_keys[key]
         if has_valid_keys:
-            assert value in self._valid_keys[key]
+            if value not in self._valid_keys[key]:
+                raise ValueError
         self.config[self._config_section][key] = value
         with open(self.config_file_path, 'w', encoding=self._config_encoding) as f:
             self.config.write(f)
@@ -152,7 +162,7 @@ class SettingsStorage:
             record_str_list = sorted(new_data_str.split('|'), key=lambda x: int(x.split(',')[0]), reverse=True)
             self._write(self._key_records, '|'.join(record_str_list[:max_records]))
         except Exception as e:
-            warnings.warn(f'error on records_add (fixed): {e}')
+            warnings.warn(f'error on records_add (fixed): {e}', stacklevel=2)
             self._write(self._key_records, new_rec)
 
     def records_clean(self):

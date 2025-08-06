@@ -1,25 +1,60 @@
 from typing import Tuple
 
-from pygame import Surface, BLEND_RGBA_MULT
+from pygame import BLEND_RGBA_MULT, Surface
 from pygame.transform import scale
 
-from common_tools.consts import SCREEN_WIDTH, SURFACE_ARGS, MENU_SHINE_WIDTH, SCREEN_HEIGHT, TEXT_ML_WIDTH, \
-    SETTINGS_STORAGE, GAME_NAME, GAME_VERSION, PACKAGE_EDITION, PACKAGE_EDITION_FREE
-from common_tools.resources import IMG_LIGHT_SHINE, FONT_MENU_GAME_NAME, FONT_TEXT_ML, IMG_GAME_NAME_BG, IMG_MENU_BG
-from common_tools.i18n import I18N_SF_TEXT_RECORDS, I18N_SF_TEXT_ABOUT, I18N_SF_TEXT_GUIDE, I18N_SF_TEXT_SETTINGS, \
-    SETTING_GRAPHIC_CAPTION, SETTING_SOUND_CAPTION, SETTING_LANGUAGE_CAPTION, SETTING_SCREEN_MODE_CAPTION, \
-    I18N_SF_TEXT_FREE_VERSION
-from common_tools.surface import blit_rotated, colorize_surface, texture_onto_sf, text_surface, text_ml_surface, \
-    shine_surface
+from common_tools.consts import (
+    DUST_SIZE_PX,
+    GAME_NAME,
+    GAME_VERSION,
+    MENU_SHINE_WIDTH,
+    PACKAGE_EDITION,
+    PACKAGE_EDITION_FREE,
+    SCREEN_HEIGHT_PX,
+    SCREEN_WIDTH_PX,
+    SETTINGS_STORAGE,
+    SURFACE_ARGS,
+    TEXT_ML_WIDTH,
+)
+from common_tools.i18n import (
+    I18N_SF_TEXT_ABOUT,
+    I18N_SF_TEXT_FREE_VERSION,
+    I18N_SF_TEXT_GUIDE,
+    I18N_SF_TEXT_RECORDS,
+    I18N_SF_TEXT_SETTINGS,
+    SETTING_GRAPHIC_CAPTION,
+    SETTING_LANGUAGE_CAPTION,
+    SETTING_SCREEN_MODE_CAPTION,
+    SETTING_SOUND_CAPTION,
+)
+from common_tools.resources import FONT_MENU_GAME_NAME, FONT_TEXT_ML, IMG_GAME_NAME_BG, IMG_LIGHT_SHINE, IMG_MENU_BG
+from common_tools.surface import (
+    blit_rotated,
+    colorize_surface,
+    shine_surface,
+    text_ml_surface,
+    text_surface,
+    texture_onto_sf,
+)
 
 
 def _text_ml_surface(text: str) -> Surface:
-    return text_ml_surface(FONT_TEXT_ML, text, '#696969', SCREEN_WIDTH * TEXT_ML_WIDTH)
+    return text_ml_surface(FONT_TEXT_ML, text, '#696969', SCREEN_WIDTH_PX * TEXT_ML_WIDTH)
+
+
+def surface_dust(texture: Surface, alpha: int) -> Surface:
+    """
+    Поверхность мерцающей пылинки
+    alpha==0 это прозрачный, (0-255)
+    """
+    dust_sf = scale(texture.convert_alpha(), (DUST_SIZE_PX, DUST_SIZE_PX))
+    dust_sf.set_alpha(alpha)
+    return dust_sf
 
 
 def surface_shine_animation_set(color: str) -> Tuple[Surface, ...]:
     """Набор кадров анимации сияния с указанным цветом"""
-    shine_w = shine_h = SCREEN_WIDTH * MENU_SHINE_WIDTH
+    shine_w = shine_h = SCREEN_WIDTH_PX * MENU_SHINE_WIDTH
     img_light_shine = scale(IMG_LIGHT_SHINE.convert_alpha(), (shine_w, shine_h))
 
     shine_frames = []
@@ -46,7 +81,7 @@ def surface_shine_animation_set(color: str) -> Tuple[Surface, ...]:
 
 
 def surface_background() -> Surface:
-    return scale(IMG_MENU_BG.convert_alpha(), (SCREEN_WIDTH, SCREEN_HEIGHT))
+    return scale(IMG_MENU_BG.convert_alpha(), (SCREEN_WIDTH_PX, SCREEN_HEIGHT_PX))
 
 
 def surface_label_game_name() -> Surface:
@@ -100,4 +135,4 @@ def surface_text_settings() -> Surface:
         ).replace(
             'LANGUAGE_CAPTION', SETTING_LANGUAGE_CAPTION[SETTINGS_STORAGE.language]
         )
-    return text_ml_surface(FONT_TEXT_ML, text, '#696969', SCREEN_WIDTH * TEXT_ML_WIDTH)
+    return text_ml_surface(FONT_TEXT_ML, text, '#696969', SCREEN_WIDTH_PX * TEXT_ML_WIDTH)

@@ -2,16 +2,24 @@ import time
 
 import pygame
 from ecs_pattern import EntityManager
-from pygame import Rect, Surface, Mask, Vector2
+from pygame import Mask, Rect, Surface, Vector2
 from pygame.event import Event
-from pygame.key import start_text_input, stop_text_input, set_text_input_rect
-from pygame.locals import KEYDOWN, MOUSEBUTTONUP, MOUSEBUTTONDOWN, MOUSEMOTION, TEXTINPUT, K_BACKSPACE, K_KP_ENTER, \
-    K_RETURN
+from pygame.key import set_text_input_rect, start_text_input, stop_text_input
+from pygame.locals import (
+    K_BACKSPACE,
+    K_KP_ENTER,
+    K_RETURN,
+    KEYDOWN,
+    MOUSEBUTTONDOWN,
+    MOUSEBUTTONUP,
+    MOUSEMOTION,
+    TEXTINPUT,
+)
 from pygame.transform import smoothscale
 
 from common_tools.components import ComUiButton, ComUiInput, ComUiText
-from common_tools.consts import SCREEN_WIDTH, BS_STATIC, BUTTON_WIDTH, BS_HOVER, BS_PRESSED, IS_STATIC, IS_ACTIVE
-from common_tools.resources import IMG_BUTTON_RECT, FONT_BUTTON, FONT_TEXT_ML
+from common_tools.consts import BS_HOVER, BS_PRESSED, BS_STATIC, BUTTON_WIDTH, IS_ACTIVE, IS_STATIC, SCREEN_WIDTH_PX
+from common_tools.resources import FONT_BUTTON, FONT_TEXT_ML, IMG_BUTTON_RECT
 from common_tools.surface import colorize_surface, text_surface
 
 _MOUSE_EVENT_SET = (MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION)
@@ -27,7 +35,7 @@ def is_point_in_mask(point: Vector2, mask: Mask, obj_rect: Rect) -> bool:
 def gui_button_attrs(x: int, y: int, text: str, w_scale: float = 1) -> dict:
     """Графическая часть атрибутов для кнопки"""
     bg = IMG_BUTTON_RECT
-    button_width = SCREEN_WIDTH * BUTTON_WIDTH * w_scale
+    button_width = SCREEN_WIDTH_PX * BUTTON_WIDTH * w_scale
     scale_rate = button_width / bg.get_width() / w_scale * 0.75
     button_sf = smoothscale(bg.convert_alpha(), (button_width, bg.get_height() * scale_rate))
 
@@ -39,7 +47,7 @@ def gui_button_attrs(x: int, y: int, text: str, w_scale: float = 1) -> dict:
 
     sf_static = button_sf
     sf_hover = colorize_surface(button_sf, '#FFD700')
-    sf_pressed = colorize_surface(button_sf, '#7FFFD4')
+    sf_pressed = colorize_surface(button_sf, '#7FFFD4')  # Аквамарин
 
     return dict(
         rect=Rect(x, y, w, h),

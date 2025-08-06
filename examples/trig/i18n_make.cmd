@@ -1,6 +1,7 @@
 REM Пересобрать .po проекта
 chcp 65001
 @echo off
+cls
 
 REM создать шаблон без переводов
 xgettext -d trig_fall -s -L Python --no-wrap -o common_tools/locale/ru/LC_MESSAGES/trig_fall.pot common_tools/i18n.py
@@ -11,5 +12,11 @@ msgmerge -U common_tools/locale/ru/LC_MESSAGES/trig_fall.po common_tools/locale/
 REM удалить шаблон
 del "common_tools\locale\ru\LC_MESSAGES\trig_fall.pot"
 
+echo
+echo ~
+echo ~~
+echo ~~~
 echo i18n_make done at %date% %time%
+echo ~~~
+echo ~~
 echo ~

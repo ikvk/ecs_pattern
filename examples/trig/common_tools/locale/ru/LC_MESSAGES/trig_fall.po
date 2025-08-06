@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-30 16:02+0500\n"
+"POT-Creation-Date: 2025-05-27 10:20+0500\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: common_tools/i18n.py:118
+#: common_tools/i18n.py:129
 msgid ""
 " Game over, your result:\n"
 " SCORE points\n"
@@ -33,7 +33,7 @@ msgstr ""
 "\n"
 "\n"
 
-#: common_tools/i18n.py:34
+#: common_tools/i18n.py:43
 msgid ""
 ": About\n"
 "\n"
@@ -52,6 +52,8 @@ msgid ""
 "• Devinne Swash: Dieter Steffmann\n"
 "• Faster One: Eduardo Tunni\n"
 "• Alice: Cyreal, Alexei Vanyashin, Gayaneh Bagdasaryan, Ksenia Erulevich\n"
+"\n"
+"Game available at android and windows. Use search."
 msgstr ""
 ": Об игре\n"
 "\n"
@@ -70,8 +72,10 @@ msgstr ""
 "• Devinne Swash: Dieter Steffmann\n"
 "• Faster One: Eduardo Tunni\n"
 "• Alice: Cyreal, Alexei Vanyashin, Gayaneh Bagdasaryan, Ksenia Erulevich\n"
+"\n"
+"Игра доступна на Android и Windows. Воспользуйтесь поиском."
 
-#: common_tools/i18n.py:54
+#: common_tools/i18n.py:65
 msgid ""
 ": Guide\n"
 "\n"
@@ -110,7 +114,7 @@ msgstr ""
 "СМЕНА НАПРАВЛ. - Шифт, касание\n"
 "ПАУЗА - Пробел, назад на android\n"
 
-#: common_tools/i18n.py:19
+#: common_tools/i18n.py:28
 msgid ""
 ": Records\n"
 "\n"
@@ -118,7 +122,7 @@ msgstr ""
 ": Достижения\n"
 "\n"
 
-#: common_tools/i18n.py:71
+#: common_tools/i18n.py:82
 msgid ""
 ": Settings\n"
 "\n"
@@ -168,87 +172,156 @@ msgstr ""
 "\n"
 "*Перезапустите игру, чтобы применить графические настройки\n"
 
-#: common_tools/i18n.py:82
+#: common_tools/i18n.py:93
 msgid "Disabled"
 msgstr "Выключен"
 
-#: common_tools/i18n.py:88
+#: common_tools/i18n.py:99
 msgid "English"
 msgstr "English"
 
-#: common_tools/i18n.py:115
+#: common_tools/i18n.py:126
 msgid "Exit game"
 msgstr "Выйти из игры"
 
-#: common_tools/i18n.py:85
+#: common_tools/i18n.py:96
 msgid "Full screen"
 msgstr "Полн. экр."
 
-#: common_tools/i18n.py:81
+#: common_tools/i18n.py:92
 msgid "High"
 msgstr "Высокое"
 
-#: common_tools/i18n.py:22
-msgid ""
-"Limitations of the free version of the game:\n"
-"1. Records are not displayed at this page, example entry:\n"
-"§ 1208 • Name • 2023-JAN-28 16:45\n"
-"2. Yellow triangles appear less frequently.\n"
-"3. The figure accelerates for less time.\n"
-"\n"
-"The paid version is available in the RuStore app market.\n"
-"\n"
-"If the game is successfully sold, I will add an online rating.\n"
-msgstr ""
-"Ограничения бесплатной версии игры:\n"
-"1. Достижения не отображаются в этом разделе, пример записи:\n"
-"§ 1208 • Имя игрока • 2023-JAN-28 16:45\n"
-"2. Жёлтые треугольники появляются реже.\n"
-"3. Фигура ускоряется на меньшее время.\n"
-"\n"
-"Платная версия доступна в магазине приложений RuStore.\n"
-"\n"
-"Если игра будет успешно продаваться, добавлю онлайн рейтинг.\n"
-
-#: common_tools/i18n.py:79
+#: common_tools/i18n.py:90
 msgid "Low"
 msgstr "Низкое"
 
-#: common_tools/i18n.py:90
+#: common_tools/i18n.py:101
 msgid "Main menu"
 msgstr "Главное меню"
 
-#: common_tools/i18n.py:80
+#: common_tools/i18n.py:91
 msgid "Middle"
 msgstr "Среднее"
 
-#: common_tools/i18n.py:84
+#: common_tools/i18n.py:95
 msgid "Normal"
 msgstr "Полный"
 
-#: common_tools/i18n.py:83
+#: common_tools/i18n.py:94
 msgid "Quiet"
 msgstr "Тихий"
 
-#: common_tools/i18n.py:113
+#: common_tools/i18n.py:124
 msgid "Resume game"
 msgstr "Продолжить игру"
 
-#: common_tools/i18n.py:112
+#: common_tools/i18n.py:123
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: common_tools/i18n.py:114
+#: common_tools/i18n.py:31
+msgid ""
+"This is a free version of the game with limitations:\n"
+"1. Records are not displayed at this page, example entry:\n"
+"§ 1208 • Name • 2023-JAN-28 16:45\n"
+"2. Yellow triangles appear less frequently.\n"
+"3. After reaching speed 5 in the game, points are not displayed.\n"
+"\n"
+"You can buy the full version of the game in the same store.\n"
+"\n"
+"If this game sells well, I will add the ability to publish achievements "
+"online.\n"
+msgstr ""
+"Это бесплатная версия игры с ограничениями:\n"
+"1. Достижения не отображаются в этом разделе, пример записи:\n"
+"§ 1208 • Имя игрока • 2023-JAN-28 16:45\n"
+"2. Жёлтые треугольники появляются реже.\n"
+"3. После достижения 5 скорости в игре, очки не отображаются.\n"
+"\n"
+"Вы можете купить полную версию игры в этом же магазине.\n"
+"\n"
+"Если эта игра будет хорошо продаваться, добавлю возможность публикации "
+"достижений онлайн.\n"
+
+#: common_tools/i18n.py:136
+msgid ""
+"Time for triangular fun!_And triangular problems!\n"
+"The main rule of the game is that_triangles are always right!\n"
+"Welcome to the triangular world!\n"
+"Welcome to the kingdom of triangles!\n"
+"Here, triangles make the rules!\n"
+"Catch the rhythm.\n"
+"Catch the triangular luck!\n"
+"We triangles are very fond of rows.\n"
+"No squares,_everything is serious here!\n"
+"No cubes, just triangles.\n"
+"Beware of the Bermuda triangle!\n"
+"Perfectionism will come in handy now!\n"
+"Win with the power of order!\n"
+"Immerse yourself_in the world of triangles!\n"
+"Let's go!\n"
+"It's getting hot!\n"
+"Just fill the lines with triangles!\n"
+"It's time for records.\n"
+"Your hands are_making history today!\n"
+"Tip of the day: use triangles!\n"
+"Become the architect_of the triangular world.\n"
+"Let's get started!\n"
+"Triangles are in action.\n"
+"Triangles are waiting,_show class!\n"
+"The triangles are calling you!\n"
+"Triangles are like people,_only triangular.\n"
+"Triangles on the march!_Collect the rows!\n"
+"The triangles are already falling,_act decisively!\n"
+"Triangles: A square is too easy!\n"
+"Triangular rock-n-roll!\n"
+"The corners are sharp,_don't get hurt!\n"
+"Form flawless rows, dominate!\n"
+"Hey, catch a figure!"
+msgstr ""
+"Время_для треугольного веселья_и треугольных проблем!\n"
+"Главное правило игры:_треугольники всегда правы!\n"
+"Добро пожаловать в треугольный мир!\n"
+"Добро пожаловать в царство треугольников!\n"
+"Здесь решают треугольники.\n"
+"Лови ритм.\n"
+"Лови треугольную удачу!\n"
+"Мы, треугольники,_очень любим ряды.\n"
+"Никаких квадратов,_здесь все серьёзно!\n"
+"Никаких кубиков,_только треугольники.\n"
+"Опасайся бермудского треугольника!\n"
+"Перфекционизм пригодится сейчас!\n"
+"Побеждай силой порядка!\n"
+"Погружение в мир треугольников!\n"
+"Поехали!\n"
+"Пошла жара!\n"
+"Просто наполняй строки треугольничками!\n"
+"Самое время для рекордов.\n"
+"Сегодня твои руки_творят историю!\n"
+"Совет дня:_используй треугольники!\n"
+"Стань архитектором треугольного мира.\n"
+"Стартуем!\n"
+"Треугольники в деле.\n"
+"Треугольники ждут,_покажи класс!\n"
+"Треугольники зовут тебя!\n"
+"Треугольники как люди,_только треугольные.\n"
+"Треугольники на марше! Собирай ряды!\n"
+"Треугольники уже падают,_действуй решительно!\n"
+"Треугольники:_квадрат – это слишком просто!\n"
+"Треугольный рок-н-ролл!\n"
+"Углы острые, не поранься!\n"
+"Формируй безупречные ряды,_доминируй!\n"
+"Эй, лови фигуру!"
+
+#: common_tools/i18n.py:125
 msgid "To main menu"
 msgstr "В главное меню"
 
-#: common_tools/i18n.py:86
+#: common_tools/i18n.py:97
 msgid "Window"
 msgstr "Окно"
 
-#: common_tools/i18n.py:87
+#: common_tools/i18n.py:98
 msgid "Русский"
 msgstr "Русский"
-
-#~ msgid "Player name"
-#~ msgstr "Имя игрока"

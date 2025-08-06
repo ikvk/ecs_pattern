@@ -1,17 +1,17 @@
 from functools import cache
-from typing import Any, Optional, Union
+from typing import Any, List, Optional, Tuple, Union
 
-from pygame.transform import rotate, scale
+from pygame import BLEND_RGBA_MULT, Color, Surface, mask
 from pygame.draw import rect
-from pygame.math import Vector2
 from pygame.font import Font
-from pygame import Color, Surface, BLEND_RGBA_MULT, mask
+from pygame.math import Vector2
+from pygame.transform import rotate, scale, smoothscale
 
 from common_tools.consts import SURFACE_ARGS
 
 
 @cache
-def _circle_points(r: int) -> [(int, int), ...]:
+def _circle_points(r: int) -> List[Tuple[int, int]]:
     r = int(round(r))
     x, y, e = r, 0, 1 - r
     points = []
@@ -85,39 +85,45 @@ def text_surface(font_obj: Font, value: Any, color_main: str, color_shadow: Opti
     return surface_res
 
 
-def text_ml_surface(font_obj: Font, ml_text: str, color: str, width: float, linesize_rate: float = 1.0) -> Surface:
+def text_ml_surface(font_obj: Font, ml_text: str, color: str, width: float,
+                    linesize_rate: float = 1.0, align_center: bool = False) -> Surface:
     """Создать поверхность с многострочным текстом"""
     words_by_lines = [line.split(' ') for line in ml_text.splitlines()]
     space_width = font_obj.size(' ')[0]
     color_obj = Color(color)
     font_line_height = font_obj.get_linesize() * linesize_rate
 
-    # get height
-    x, y = 0, 0
-    for line in words_by_lines:
-        for word in line:
+    # Сборка строк с соблюдением ширины
+    rendered_lines = []
+    for line_words in words_by_lines:
+        current_line = []
+        current_width = 0
+        for word in line_words:
             word_width = font_obj.size(word)[0]
-            if x + word_width >= width:
-                x = 0
-                y += font_line_height
-            x += word_width + space_width
-        x = 0
-        y += font_line_height
+            if current_width + word_width >= width:
+                rendered_lines.append(' '.join(current_line))
+                current_line = [word]
+                current_width = word_width + space_width
+            else:
+                current_line.append(word)
+                current_width += word_width + space_width
+        if current_line:
+            rendered_lines.append(' '.join(current_line))
 
-    # render
-    surface = Surface((width, y), **SURFACE_ARGS)
-    x, y = 0, 0
-    for line in words_by_lines:
-        for word in line:
-            word_surface = font_obj.render(word, True, color_obj)
-            word_width = word_surface.get_size()[0]
-            if x + word_width >= width:
-                x = 0
-                y += font_line_height
-            surface.blit(word_surface, (x, y))
-            x += word_width + space_width
-        x = 0
-        y += font_line_height
+    # Расчет общей высоты текста
+    total_height = len(rendered_lines) * font_line_height
+
+    # Создание поверхности
+    surface = Surface((width, total_height), **SURFACE_ARGS)
+    y_pos = 0
+
+    # Рисуем текст с учётом выбранного выравнивания
+    for line in rendered_lines:
+        line_surface = font_obj.render(line, True, color_obj)
+        line_width = line_surface.get_width()
+        x_pos = (width - line_width) / 2 if align_center else 0  # Центрирование строки, если требуется
+        surface.blit(line_surface, (x_pos, y_pos))
+        y_pos += font_line_height
 
     return surface
 
@@ -155,3 +161,9 @@ def shine_surface(surface: Surface, color_str: str, size_px: int, shine_sf_alpha
         res_sf.blit(outline_sf, (size_px - i, size_px - i))
     res_sf.blit(surface, (size_px, size_px))
     return res_sf
+
+
+def gaussian_blur(surface: Surface, radius: float):
+    scaled_surface = smoothscale(surface, (surface.get_width() // radius, surface.get_height() // radius))
+    scaled_surface = smoothscale(scaled_surface, (surface.get_width(), surface.get_height()))
+    return scaled_surface

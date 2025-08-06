@@ -1,8 +1,15 @@
 from ecs_pattern import entity
 from pygame.mixer import Channel
 
-from common_tools.components import ComUiButton, ComUiText, Com2dCoord, ComSurface, ComAnimationSet, \
-    ComAnimated
+from common_tools.components import (
+    Com2dCoord,
+    ComAnimated,
+    ComAnimationSet,
+    ComSpeed,
+    ComSurface,
+    ComUiButton,
+    ComUiText,
+)
 
 
 @entity
@@ -10,6 +17,7 @@ class MenuData:
     do_menu: bool  # Флаг продолжения основного цикла меню
     scene_active: int  # текущая сцена
     music_channel: Channel  # фоновая музыка меню
+    last_dust_spawn_time: float  # Время последнего создания пылинки
 
 
 @entity
@@ -140,3 +148,20 @@ class ButtonLanguageRu(ComUiButton):
 @entity
 class ButtonLanguageEn(ComUiButton):
     """Кнопка - Включить английский язык"""
+
+
+@entity
+class Dust(ComSpeed, Com2dCoord, ComAnimated):
+    """Мерцающая движущаяся пылинка"""
+
+
+@entity
+class DustAnimationSet(ComAnimationSet):
+    """
+    Кадры анимации пылинки
+    0 - прозрачная, 255-не прозрачная
+    """
+
+    def __post_init__(self):
+        if len(self.frames) != 256:
+            raise ValueError

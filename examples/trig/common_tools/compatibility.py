@@ -1,7 +1,13 @@
 import os
 import sys
-from io import BytesIO
 from functools import cache
+from io import BytesIO
+
+
+def pyinstaller_path_fix(path: str) -> str:
+    """PyInstaller creates a temp folder and stores it path in _MEIPASS environment variable"""
+    base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
+    return os.path.join(base_path, path)
 
 
 def bytes_buffer_instead_path(path: str) -> BytesIO:
@@ -9,11 +15,7 @@ def bytes_buffer_instead_path(path: str) -> BytesIO:
     some problems with pygame on kivy, you can't load a file directly in pygame
     https://stackoverflow.com/questions/75843421/
     """
-    # PyInstaller creates a temp folder and stores path in _MEIPASS
-    base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
-    path = os.path.join(base_path, path)
-
-    with open(path, 'rb') as f:
+    with open(pyinstaller_path_fix(path), 'rb') as f:
         return BytesIO(f.read())
 
 
@@ -34,7 +36,7 @@ def get_user_data_dir(package_name: str) -> str:
         file_p = cast('java.io.File', context.getFilesDir())
         data_dir = file_p.getAbsolutePath()
     elif sys.platform == 'win32':
-        data_dir = os.path.join(os.environ['APPDATA'], package_name)
+        data_dir = os.path.join(os.environ['APPDATA'], package_name)  # C:\Users\v.kaukin\AppData\Roaming\
     else:  # 'linux' and other
         data_dir = os.environ.get('XDG_CONFIG_HOME', '~/.config')
         data_dir = os.path.expanduser(os.path.join(data_dir, package_name))

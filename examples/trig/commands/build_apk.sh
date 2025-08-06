@@ -2,7 +2,7 @@
 
 # Bash has a handy SECONDS builtin var that tracks the number of seconds that have passed since the shell was started
 SECONDS=0
-GAME_VERSION="1.0.3"   # дублируй в common_tools !
+GAME_VERSION="1.2.2"   # дублируй в common_tools !
 
 echo
 echo "🚀 Build $GAME_NAME started at: $(date +'%Y-%m-%d %H:%M:%S')"
@@ -53,6 +53,7 @@ printf "PACKAGE_EDITION = '$PACKAGE_EDITION'\n" >> $GIT_REPO_PATH/common_tools/b
 pip install -r "$GIT_REPO_PATH/requirements.txt"
 
 # Сборка
+# https://python-for-android.readthedocs.io/en/latest/buildoptions.html#bootstrap-build-options
 p4a apk \
   --dist-name=trig_fall \
   --orientation=portrait \
@@ -70,6 +71,7 @@ p4a apk \
   --presplash-color=wheat \
   --icon=$GIT_REPO_PATH/res/img/game_icon.png \
   --permission=android.permission.WRITE_EXTERNAL_STORAGE \
+  --wakelock \
   $P4A_EXTRA_ARGS
 if ! [[ "$?" == 0 ]]; then
     echo "⛔ Failed: p4a apk"

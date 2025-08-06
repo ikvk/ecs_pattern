@@ -1,10 +1,16 @@
-from typing import Tuple, Callable, Hashable
+from typing import Callable, Hashable, Tuple
 
+from ecs_pattern import component
 from pygame import Rect, Surface
 from pygame.font import Font
-from ecs_pattern import component
 
 from common_tools.consts import BS_STATIC, IS_STATIC
+
+
+@component
+class ComLiveTime:
+    """Время жизни до указанной секунды"""
+    live_until_time: float  # когда время monotonic станет больше, объект удаляется
 
 
 @component
@@ -38,7 +44,7 @@ class ComAnimated:
     """Анимированный объект"""
     animation_set: ComAnimationSet  # набор кадров анимации, 0-последний кадр, len(animation_set)-первый кадр
     animation_looped: bool  # анимация зациклена либо удаляется после прохода
-    animation_frame: int  # текущий кадр анимации, значение вычитается
+    animation_frame: int  # текущий кадр анимации, значение ВЫЧИТАЕТСЯ
     animation_frame_float: float  # для расчета переключения animation_frame
     animation_speed: float  # кадров в секунду, *используй поправку на FPS
 
