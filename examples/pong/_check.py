@@ -8,6 +8,11 @@ from sprites import ball_sprite, racket_sprite, table_sprite, score_sprite
 from consts import Team, BALL_SIZE, RACKET_WIDTH, RACKET_HEIGHT
 from components import ComVisible, ComMotion, ComScore, ComTeam, ComWait
 
+from entities import (
+    Ball1, Ball2, Ball3, Ball4, Ball5, Ball6, Ball7, Ball8, Ball9, Ball10, Ball11, Ball12, Ball13, Ball14, Ball15,
+    Ball16, Ball17, Ball18, Ball19, Ball20, Ball21, Ball22, Ball23, Ball24, Ball25, Ball26, Ball27, Ball28, Ball29,
+    Ball30)
+
 pygame.init()
 screen_info = pygame.display.Info()
 
@@ -90,6 +95,18 @@ def _add_10_entities(entity_manager):
             y=0
         ),
     )
+    for ball_cls in (
+            Ball1, Ball2, Ball3, Ball4, Ball5, Ball6, Ball7, Ball8, Ball9, Ball10, Ball11, Ball12, Ball13, Ball14,
+            Ball15,
+            Ball16, Ball17, Ball18, Ball19, Ball20, Ball21, Ball22, Ball23, Ball24, Ball25, Ball26, Ball27, Ball28,
+            Ball29,
+            Ball30):
+        entity_manager.add(ball_cls(
+            sprite=ball_spr,
+            x=int(screen_info.current_w * 0.5 - BALL_SIZE * screen_info.current_h / 2),
+            y=int(screen_info.current_h * 0.5 - BALL_SIZE * screen_info.current_h / 2),
+            speed_x=0, speed_y=0
+        ))
 
 
 def entity_manager_access():
@@ -155,6 +172,59 @@ def entity_manager_access():
             pass
 
     print(time.time() - t, 'sec')
+
+
+def entity_manager_access_time_new():
+    """
+    old
+        10
+        get_with_component 1.9024698734283447 sec
+        get_by_class       0.0029909610748291016 sec
+        100
+        get_with_component 20.460123300552368 sec
+        get_by_class       0.031894683837890625 sec
+        1000
+        get_with_component 211.59297728538513 sec
+        get_by_class       0.32411861419677734 sec
+
+    new
+        10
+        get_with_component 1.9844794273376465 sec
+        get_by_class       0.003472566604614258 sec
+        100
+        get_with_component 20.47613501548767 sec
+        get_by_class       0.032120704650878906 sec
+        1000
+        get_with_component 217.09030771255493 sec
+        get_by_class       0.3218879699707031 sec
+    """
+    entities = EntityManager()
+
+    # entities cnt
+    for entities_cnt in (10, 100, 1000):
+        print(entities_cnt)
+        for k in range(entities_cnt):
+            _add_10_entities(entities)  # 10!
+
+        t = time.time()
+        for i in range(60 * 60):  # 60 * 60
+            for ent in entities.get_with_component(ComVisible):
+                str(ent)
+            for ent in entities.get_with_component(ComMotion):
+                str(ent)
+            for ent in entities.get_with_component(ComScore):
+                str(ent)
+            for ent in entities.get_with_component(ComTeam):
+                str(ent)
+            for ent in entities.get_with_component(ComWait):
+                str(ent)
+        print('get_with_component', time.time() - t, 'sec')
+
+        t = time.time()
+        for i in range(60):
+            for ent in entities.get_by_class(Ball, GameStateInfo, Racket, Score, Table):
+                str(ent)
+        print('get_by_class      ', time.time() - t, 'sec')
 
 
 def entity_manager_delete_buffer():
@@ -270,6 +340,7 @@ def lib_attrs_mem():
 
 
 if __name__ == '__main__':
+    # entity_manager_access_time_new()
     # show_memory_usage(entity_manager_access)
     # show_memory_usage(entity_manager_delete_buffer)
     # show_memory_usage(entity_dataclass_slots)
