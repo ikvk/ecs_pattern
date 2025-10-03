@@ -3,7 +3,7 @@
 Trig fall - game
 ========================================================================================================================
 
-This is commercial game, implemented on pygame + ecs_pattern + numpy
+This is a paid game, implemented on pygame + ecs_pattern + numpy
 
 | Key parts of game logic are cutted (*pass  # todo CUT*).
 | But it code still *useful to learn* how to use ECS with ecs_pattern lib.
