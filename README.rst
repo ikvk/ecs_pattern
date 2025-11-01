@@ -22,7 +22,7 @@ Repo mirror      https://gitflic.ru/project/ikvk/ecs-pattern
 
 .. contents::
 
-Intro
+🧭 Intro
 ========================================================================================================================
 | ECS - Entity-Component-System - it is an architectural pattern created for game development.
 
@@ -39,13 +39,13 @@ Basic principles of ECS:
 | *EntityManager* - Entity database
 | *SystemManager* - Container for systems
 
-Installation
+⚙️ Installation
 ========================================================================================================================
 ::
 
     $ pip install ecs-pattern
 
-Guide
+📘 Guide
 ========================================================================================================================
 
 The library provides you with 5 tools:
@@ -60,7 +60,7 @@ The library provides you with 5 tools:
 * Store entities in entity manager - EntityManager
 * Manage your systems with SystemManager
 
-Component
+🧩 Component
 ------------------------------------------------------------------------------------------------------------------------
     | Property with object data. Contains only data, no logic.
 
@@ -82,7 +82,7 @@ Component
             name: str
             health: int
 
-Entity
+🧱 Entity
 ------------------------------------------------------------------------------------------------------------------------
     | Container for properties. Consists of components only.
 
@@ -104,7 +104,7 @@ Entity
         class Ball(ComPosition):
             pass
 
-System
+🔄 System
 ------------------------------------------------------------------------------------------------------------------------
     | Entity processing logic.
 
@@ -145,7 +145,7 @@ System
                     if entity_with_pos.y > 0:
                         entity_with_pos.y -= 1
 
-EntityManager
+🗂️ EntityManager
 ------------------------------------------------------------------------------------------------------------------------
     | Container for entities.
 
@@ -183,7 +183,7 @@ EntityManager
         entities.delete_buffer_purge()
         entities.delete(*tuple(entities.get_by_class(Ball)))  # one line del
 
-SystemManager
+🗃️ SystemManager
 ------------------------------------------------------------------------------------------------------------------------
     | Container for systems.
 
@@ -215,13 +215,13 @@ SystemManager
             clock.tick(24)  # *pygame clock
         system_manager.stop_systems()
 
-Examples
+💡 Examples
 ========================================================================================================================
 * `Pong <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong#pong---classic-game>`_: game - pygame + ecs_pattern
 * `Snow day <https://github.com/ikvk/ecs_pattern/tree/master/examples/snow_day#snow-day---scene>`_: scene - pygame + ecs_pattern
 * `Trig fall <https://github.com/ikvk/ecs_pattern/tree/master/examples/trig#trig-fall---game>`_: commercial game - pygame + ecs_pattern + numpy
 
-Advantages
+🌟 Advantages
 ========================================================================================================================
 * Memory efficient - Component and Entity use dataclass
 * Convenient search for objects - by entity class and by entity components
@@ -232,12 +232,12 @@ Advantages
 * Convenient to parallelize processing
 * Compact implementation
 
-Difficulties
+⚠️ Difficulties
 ========================================================================================================================
 * It can take a lot of practice to learn how to cook ECS properly
 * Data is available from anywhere - hard to find errors
 
-Newbie mistakes
+❌ Newbie mistakes
 ========================================================================================================================
 * Inheritance of components, entities, systems
 * Ignoring the principles of ECS, such as storing data in the system
@@ -246,7 +246,7 @@ Newbie mistakes
 * Use of recursive or reactive logic in systems
 * Using EntityManager.delete in get_by_class, get_with_component loops
 
-Good Practices
+✅ Good Practices
 ========================================================================================================================
 * Use "Singleton" components with data and flags
 * Minimize component change locations
@@ -279,7 +279,7 @@ Project tree example:
         systems.py
     main.py
 
-Implementation essence
+🛠️ Implementation essence
 ========================================================================================================================
 In the classic ECS implementation, each component is stored in a separate collection.
 In python, it is impossible to place objects in contiguous memory,
@@ -290,12 +290,12 @@ The ecs_pattern library focuses on the simplicity and convenience of working wit
 If the speed of accessing objects is not enough for you (for example, a million objects),
 then change the language to a faster one - without options.
 
-Releases
+📜 Release notes
 ========================================================================================================================
 
 History of important changes: `release_notes.rst <https://github.com/ikvk/ecs_pattern/blob/master/_docs/release_notes.rst>`_
 
-Help the project
+🤝 Help the project
 ========================================================================================================================
 * Found a bug or have a suggestion - issue / merge request 🎯
 * There is nothing to help this project with - help another open project that you are using ✋
