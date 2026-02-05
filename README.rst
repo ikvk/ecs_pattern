@@ -245,6 +245,7 @@ The library provides you with 5 tools:
 * Adaptation of the existing project code under ECS "as is"
 * Use of recursive or reactive logic in systems
 * Using EntityManager.delete in get_by_class, get_with_component loops
+* Dynamically adding attributes to an entity
 
 ✅ Good Practices
 ========================================================================================================================
