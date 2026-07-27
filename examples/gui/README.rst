@@ -7,13 +7,13 @@ Run it by: `gui/demo.py <https://github.com/ikvk/ecs_pattern/tree/master/example
 
 Main GUI modules here:
 
-    * `common_tools/components.py <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui/common_tools/components.py>`_  (ComUi...)
-    * `common_tools/gui.py <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui/common_tools/gui.py>`_
+* `common_tools/components.py <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui/common_tools/components.py>`_  (ComUi...)
+* `common_tools/gui.py <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui/common_tools/gui.py>`_
 
 Folders with the project code in which this gui was used:
 
-    * `_diafilms_offline_menu <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui/_diafilms_offline_player>`_
-    * `_diafilms_offline_player <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui/_diafilms_offline_player>`_
+* `_diafilms_offline_menu <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui/_diafilms_offline_menu>`_
+* `_diafilms_offline_player <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui/_diafilms_offline_player>`_
 
 Screen:
     .. image:: https://github.com/ikvk/ecs_pattern/blob/master/examples/gui/_docs/demo_screen.png
