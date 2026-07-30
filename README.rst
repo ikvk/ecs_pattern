@@ -33,11 +33,11 @@ Basic principles of ECS:
 * Composition over inheritance
 * Data separated from logic (Data Oriented Design)
 
-| *Component* - Property with object data
-| *Entity* - Container for properties
-| *System* - Data processing logic
-| *EntityManager* - Entity database
-| *SystemManager* - Container for systems
+| ``Component`` - Property with object data
+| ``Entity`` - Container for properties
+| ``System`` - Data processing logic
+| ``EntityManager`` - Entity database
+| ``SystemManager`` - Container for systems
 
 ⚙️ Installation
 ========================================================================================================================
@@ -54,11 +54,11 @@ The library provides you with 5 tools:
 
     from ecs_pattern import component, entity, EntityManager, System, SystemManager
 
-* Describe components - component
-* Describe entities based on components - entity
-* Distribute the responsibility of processing entities by systems - System
-* Store entities in entity manager - EntityManager
-* Manage your systems with SystemManager
+* Describe components - ``component``
+* Describe entities based on components - ``entity``
+* Distribute the responsibility of processing entities by systems - ``System``
+* Store entities in entity manager - ``EntityManager``
+* Manage your systems with ``SystemManager``
 
 🧩 Component
 ------------------------------------------------------------------------------------------------------------------------
