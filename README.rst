@@ -250,7 +250,7 @@ The library provides you with 5 tools:
 
 ✅ Good Practices
 ========================================================================================================================
-* Use "Singleton" components with data and flags
+* Use "Singleton" components with data and flags, for example for events
 * Minimize component change locations
 * Do not create methods in components and entities
 * Divide the project into scenes, a scene can be considered a cycle for the SystemManager with its EntityManager
