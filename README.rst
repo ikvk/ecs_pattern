@@ -221,6 +221,8 @@ The library provides you with 5 tools:
 * `Snow day <https://github.com/ikvk/ecs_pattern/tree/master/examples/snow_day#snow-day---scene>`_: scene - pygame + ecs_pattern
 * `Trig fall <https://github.com/ikvk/ecs_pattern/tree/master/examples/trig#trig-fall---game>`_: commercial game - pygame + ecs_pattern + numpy
 * `Advanced GUI <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui>`_: Advanced GUI from real project
+* `Compare with esper <https://github.com/ikvk/ecs_pattern/tree/master/examples/compare_with_esper>`_: another python ECS lib.
+* `entity_strict.py <https://github.com/ikvk/ecs_pattern/tree/master/examples/entity_strict.py>`_: ``debug`` entity, that prohibits the creation of new attributes.
 
 🌟 Advantages
 ========================================================================================================================

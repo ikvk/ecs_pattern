@@ -219,6 +219,9 @@ Dependencies     dataclasses before 3.7, typing before 3.5
 * `Pong <https://github.com/ikvk/ecs_pattern/tree/master/examples/pong#pong---classic-game>`_: игра - pygame + ecs_pattern
 * `Snow day <https://github.com/ikvk/ecs_pattern/tree/master/examples/snow_day#snow-day---scene>`_: сцена - pygame + ecs_pattern
 * `Trig fall <https://github.com/ikvk/ecs_pattern/tree/master/examples/trig#trig-fall---game>`_: коммерческая игра - pygame + ecs_pattern + numpy
+* `Advanced GUI <https://github.com/ikvk/ecs_pattern/tree/master/examples/gui>`_: Продвинутый графический интерфейс из реального проекта
+* `Compare with esper <https://github.com/ikvk/ecs_pattern/tree/master/examples/compare_with_esper>`_: другая библиотека ECS для python.
+* `entity_strict.py <https://github.com/ikvk/ecs_pattern/tree/master/examples/entity_strict.py>`_: entity ``для отладки``, который запрещает создание новых атрибутов.
 
 🌟 Преимущества
 ========================================================================================================================
