@@ -12,7 +12,7 @@ At scene: 50 000 snowflakes with different: transparency, rotation speed, moveme
 
 FPS is the same in both variants, with any SNOWFLAKE_CNT.
 
-``This proves that copying the classic ECS approach in Python is pointless.``
+``This proves that literally copying the classic ECS approach in Python is pointless.``
 
 Consumption of other resources is the same.
 
