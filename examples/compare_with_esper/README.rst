@@ -15,3 +15,5 @@ FPS is the same in both variants, with any SNOWFLAKE_CNT.
 ``This proves that copying the classic ECS approach in Python is pointless.``
 
 Consumption of other resources is the same.
+
+In my opinion ``ecs_pattern`` is much more pythonic than ``esper``.
