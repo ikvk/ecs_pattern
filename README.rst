@@ -292,7 +292,7 @@ so optimizing processor access to memory in python is not feasible.
 The ecs_pattern library focuses on the simplicity and convenience of working with objects in code.
 
 If the speed of accessing objects is not enough for you (for example, a million objects),
-then change the language to a faster one - without options.
+then change the language to a faster one. ECS lib examples: freecs(rust), entt(cpp), flecs(cpp).
 
 📜 Release notes
 ========================================================================================================================
