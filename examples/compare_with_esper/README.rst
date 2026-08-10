@@ -10,17 +10,20 @@ Scene with snowflakes and warm shine, implemented on:
 
 At scene: 50 000 snowflakes with different: transparency, rotation speed, movement speed.
 
-* **FPS**: is the same in both variants.
-    ``This proves that literally copying the classic ECS approach in Python is pointless.``
+**FPS**:
+    | is the same in both variants.
+    | ``This proves that literally copying the classic ECS approach in Python is pointless.``
 
-* **Memory**: ecs_pattern consumes 96Mb, esper consumes 144Mb.
-    ``ecs_pattern has a significant advantage due to the use of optimal data structures.``
+**Memory**:
+    | ecs_pattern consumes 96Mb, esper consumes 144Mb.
+    | ``ecs_pattern has a significant advantage due to the use of optimal data structures.``
 
-* **CPU**: is the same in both variants = 10%.
-    As expected.
+**CPU**:
+    | is the same in both variants = 10%.
+    | As expected.
 
-* **Code**:
-    ``ecs_pattern has a much simpler interface``
+**Code**:
+    | ``ecs_pattern has a much simpler interface``
 
 📋 Conclusion:
 
@@ -29,4 +32,4 @@ At scene: 50 000 snowflakes with different: transparency, rotation speed, moveme
 * ``ecs_pattern`` is much more pythonic than ``esper``
 * Mamory and CPU usage - the same.
 
-🚀 Choose the ``ecs_pattern`` library!
+🚀 Choose the ``ecs_pattern`` library! ⭐
