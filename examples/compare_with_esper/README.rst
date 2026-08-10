@@ -8,7 +8,7 @@ Scene with snowflakes and warm shine, implemented on:
 1. ``snow_esper.py``: pygame + esper
 2. ``snow_ecs_pattern.py``: pygame + ecs_pattern
 
-At scene: 50 000 snowflakes with different: transparency, rotation speed, movement speed.
+🎬 At scene: 50 000 snowflakes with different: transparency, rotation speed, movement speed.
 
 **FPS**:
     | is the same in both variants.
