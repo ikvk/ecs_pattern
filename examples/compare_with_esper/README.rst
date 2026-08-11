@@ -5,8 +5,8 @@
 
 Scene with snowflakes and warm shine, implemented on two ECS libs:
 
-1. snow_esper.py: pygame + ``esper``
-2. snow_ecs_pattern.py: pygame + ``ecs_pattern``
+1. *snow_esper.py*: pygame + ``esper``
+2. *snow_ecs_pattern.py*: pygame + ``ecs_pattern``
 
 🎬 At scene: 50 000 snowflakes with different: transparency, rotation speed, movement speed.
 
@@ -29,6 +29,6 @@ Scene with snowflakes and warm shine, implemented on two ECS libs:
 * ``ecs_pattern`` consumes significantly less memory than ``esper``
 * ``ecs_pattern`` ecs_pattern has a much simpler interface than ``esper``
 * ``ecs_pattern`` is much more pythonic than ``esper``
-* Memory and CPU usage - the same.
+* FPS and CPU usage - the same.
 
 🚀 Choose the ``ecs_pattern`` library! ⭐
