@@ -5,17 +5,17 @@
 
 Scene with snowflakes and warm shine, implemented on two ECS libs:
 
-1. *snow_esper.py*: pygame + ``esper``
-2. *snow_ecs_pattern.py*: pygame + ``ecs_pattern``
+1. `snow_esper.py <https://github.com/ikvk/ecs_pattern/blob/master/examples/compare_with_esper/snow_esper.py>`_: pygame + ``esper``
+2. `snow_ecs_pattern.py <https://github.com/ikvk/ecs_pattern/blob/master/examples/compare_with_esper/snow_ecs_pattern.py>`_: pygame + ``ecs_pattern``
 
 🎬 At scene: 50 000 snowflakes with different: transparency, rotation speed, movement speed.
 
 **FPS**:
-    | is the same in both variants.
-    | ``This proves that literally copying the classic ECS approach in Python is pointless.``
+    | is the same in both variants. With any number of snowflakes.
+    | ``This proves that literally copying the classic ECS approach in Python (like in esper) is pointless.``
 
 **Memory**:
-    | ecs_pattern consumes 96Mb, esper consumes 144Mb.
+    | ecs_pattern consumes 96Mb, esper consumes 144Mb. The gap is the same for any number of snowflakes.
     | ``ecs_pattern has a significant advantage due to the use of optimal data structures.``
 
 **CPU**:
