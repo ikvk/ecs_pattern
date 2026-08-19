@@ -1,6 +1,6 @@
 .. http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
-⚖️ Compare python ECS libs
+⚖️ Compare python ECS libs: esper and ecs_pattern
 ========================================================================================================================
 
 Scene with snowflakes and warm shine, implemented on two ECS libs:
