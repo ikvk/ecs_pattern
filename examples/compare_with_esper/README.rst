@@ -22,13 +22,13 @@ Scene with snowflakes and warm shine, implemented on two ECS libs:
     | is the same in both variants = 10%. As expected.
 
 **Code**:
-    | ``ecs_pattern has a much simpler interface``
+    | ``ecs_pattern is more pythonic, has simpler interface, let write less boilerplate code``
 
 📋 Conclusion:
 
 * ``ecs_pattern`` consumes significantly less memory than ``esper``
 * ``ecs_pattern`` ecs_pattern has a much simpler interface than ``esper``
-* ``ecs_pattern`` is much more pythonic than ``esper``
+* ``ecs_pattern`` is more pythonic, has simpler interface, let write less boilerplate code
 * FPS and CPU usage - the same.
 
 🚀 Choose the ``ecs_pattern`` library! ⭐
